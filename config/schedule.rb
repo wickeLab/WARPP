@@ -22,3 +22,7 @@
 every :saturday, at: '5am' do
   rake 'update_database:publications'
 end
+
+every :sunday, at: '5am' do
+  rake 'update_database:genbank'
+end

@@ -12,4 +12,9 @@ namespace :update_database do
     puts 'Destroying unlinked publications...'
     Publication.unlinked.destroy_all
   end
+
+  desc 'update genbank entries'
+  task genbank: :environment do
+    GenBank.find_each(batch_size: 1000, &:ncbi_update)
+  end
 end

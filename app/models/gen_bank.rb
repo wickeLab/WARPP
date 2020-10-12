@@ -8,6 +8,11 @@ class GenBank < ApplicationRecord
   before_create :fetch_genbank_information_from_ncbi
 
   # INSTANCE METHODS
+  def ncbi_update
+    fetch_genbank_information_from_ncbi
+    save!
+  end
+
   def collect_info_for_species
     scientific_name = taxon.scientific_name
 
@@ -55,29 +60,28 @@ class GenBank < ApplicationRecord
 
       begin
         overall = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=#{scientific_name_ascii}[Organism]&rettype=count&api_key=#{key}").parsed_response
-        overall = overall['esearchresult']['count'].to_i
+        overall = overall['eSearchResult']['Count'].to_i
       rescue NoMethodError
         overall = 0
       end
 
       begin
-
         est_count = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=#{scientific_name_ascii}[Organism]+is_est[filter]&rettype=count&api_key=#{key}").parsed_response
-        est_count = est_count['esearchresult']['count'].to_i
+        est_count = est_count['eSearchResult']['Count'].to_i
       rescue NoMethodError
         est_count = 0
       end
 
       begin
         plastome_count = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=#{scientific_name_ascii}[Organism]+plastid[filter]&rettype=count&api_key=#{key}").parsed_response
-        plastome_count = plastome_count['esearchresult']['count'].to_i
+        plastome_count = plastome_count['eSearchResult']['Count'].to_i
       rescue NoMethodError
         plastome_count = 0
       end
 
       begin
         mtdna_count = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=nuccore&term=#{scientific_name_ascii}[Organism]+mitochondrion[filter]&rettype=count&api_key=#{key}").parsed_response
-        mtdna_count = mtdna_count['esearchresult']['count'].to_i
+        mtdna_count = mtdna_count['eSearchResult']['Count'].to_i
       rescue NoMethodError
         mtdna_count = 0
       end
@@ -90,8 +94,12 @@ class GenBank < ApplicationRecord
       ################
       ## SRA
 
-      sra_count = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=#{scientific_name_ascii}&rettype=count&api_key=#{key}")
-      sra_count = sra_count['esearchresult']['count'].to_i
+      begin
+        sra_count = HTTParty.get("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=#{scientific_name_ascii}&rettype=count&api_key=#{key}")
+        sra_count = sra_count['eSearchResult']['Count'].to_i
+      rescue NoMethodError
+        sra_count = 0
+      end
 
       self.est = est_count
       self.plastome = plastome_count
