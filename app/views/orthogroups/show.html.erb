@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <%= javascript_include_tag 'orthogroup_tree' %>
+    <%= javascript_include_tag 'orthogroup' %>
+  </head>
+  <body>
+  <% content_for :main_content do %>
+    <div class="orthogroup-main">
+      <div class="fix-position-wrapper">
+        <div class="d3-container"></div>
+      </div>
+
+      <div class="tool-container-outer" id="width-reference">
+        <div class="card" id="node-leaves">
+          <div class="card-header">Functional assignment</div>
+          <div class="card-body" id="function-realm">
+            <ul>
+              <% @function_realm.each do |function| %>
+                <li><%= function %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="card-header">Node details</div>
+          <div class="card-body" id="node-details"></div>
+
+          <div class="card-header">
+            Node leaves
+            <div class="node-leaf-info"><sup><i class="fas fa-question-circle"></i></sup>
+              <span class="tooltip-text">Hover over one of the currently displayed nameless leaf nodes to get the names of all its descendants.</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="js-tooltip"></div>
+          </div>
+
+        </div>
+        <div class="tools">
+          <h5>Orthogroup <%= @orthogroup.identifier %></h5>
+
+          <div class="accordion" id="taxon-functions"></div>
+
+          <div class="downloads">
+            <%= button_to "Download tree (newick)", download_ortho_newick_path, method: :get, class: "btn", id: "download-tree-file" %>
+            <% if @orthogroup.sequence_file.attached? %>
+              <%= button_to "Download sequences (fasta)", download_ortho_fasta_path, method: :get, class: "btn", id: "download-sequence-file" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </body>
+</html>

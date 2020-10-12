@@ -1,0 +1,16 @@
+.edit-container {
+  .species-edit-form {
+    .flex-container#taxonomy {
+      display: flex;
+      flex-direction: column;
+
+      .taxonomic-information {
+        display: flex;
+      }
+
+      .taxonomic-information:not(:last-of-type) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

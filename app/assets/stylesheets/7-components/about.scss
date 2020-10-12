@@ -1,0 +1,46 @@
+// Place all the styles related to the About controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// WARPP
+
+p, li {
+  //max-width: 75ch;
+}
+
+figure, img {
+  float: right;
+
+  &.warpp-icon {
+    width: 25%;
+  }
+
+  &#fig-1 {
+    width: 40%;
+  }
+
+  &#origin-parasitism {
+    width: 100%;
+  }
+}
+
+figure {
+  img {
+    margin-bottom: 10px;
+  }
+
+  border: #cfcfcf solid 1px;
+  background: #ededed;
+  padding: 5px;
+}
+
+.card-footer.about-footer {
+  display: block !important;
+}
+
+ul.references {
+  list-style: none;
+  padding: 0;
+  text-indent: -20px; /* key property */
+  margin-left: 20px; /* key property */
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<% content_for(:main_content) do %>
+  <div class="sub-main">
+    <div class="card" id="main-text-container">
+      <div class="card-header">
+        <h4><%= @scientific_name %> has the following children</h4>
+      </div>
+      <div class="card-body">
+        <table>
+          <% @children.each do |child| %>
+            <tr><td><%= link_to child.scientific_name, taxon_path(child.id), id: child.information_status%></td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

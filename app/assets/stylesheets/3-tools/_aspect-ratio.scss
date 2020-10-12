@@ -1,0 +1,28 @@
+@mixin standard-height($min-max: "min") {
+  @if $min-max == "min" {
+    min-height: calc(100vh - 92px);
+  }
+  @else {
+    max-height: calc(100vh - 92px);
+  }
+}
+
+@mixin columns($column-count: 3, $gap: 40px, $rule: true) {
+  /* Old Chrome, Safari and Opera */
+  -webkit-column-count: $column-count;
+  -webkit-column-gap: $gap;
+
+  /* Old Firefox */
+  -moz-column-count: $column-count;
+  -moz-column-gap: $gap;
+
+  /* Standard syntax */
+  column-count: $column-count;
+  column-gap: $gap;
+
+  @if $rule == true {
+    -webkit-column-rule: 2px solid $clr-standard-border;
+    -moz-column-rule: 2px solid $clr-standard-border;
+    column-rule: 2px solid $clr-standard-border;
+  }
+}

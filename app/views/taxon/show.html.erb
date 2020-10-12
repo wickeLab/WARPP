@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <%= javascript_include_tag 'taxon/taxon_show' %>
+</head>
+<body>
+<% content_for(:main_content) do %>
+  <div class="species-header">
+    <h1><i><%= @species %></i> <%= @authorship %></h1>
+    <% if @family %>
+      <i><%= link_to @family, taxonomy_browser_path(family: @family) %> > <%= link_to @genus, show_children_taxa_path(scientific_name: @genus) %></i>
+    <% end %>
+  </div>
+  <div class="wiki-container first-paragraph">
+    <div class="wiki-entry">
+      <table class="wiki-table">
+        <tr>
+          <td><b>Lifespan:</b></td>
+          <td>
+            <% if @info_with_ref_numbers["Lifespan"].nil? %>
+              unknown
+            <% else %>
+              <% @info_with_ref_numbers["Lifespan"].each do |lifespan_info| %>
+                <%= lifespan_info[0] %>
+                <% if lifespan_info[1].length != 0 %>
+                  <sup>[
+                    <% lifespan_info[1].sort.each do |reference_number| %>
+                      <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                      <% if reference_number != lifespan_info[1].max %>,<% end %>
+                    <% end %>]
+                  </sup>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Lifestyle:</b></td>
+          <td>
+            <% if @info_with_ref_numbers["Lifestyle"].nil? %>
+              unknown
+            <% else %>
+              <% @info_with_ref_numbers["Lifestyle"].each do |lifestyle_info| %>
+                <%= lifestyle_info[0] %>
+                <% if lifestyle_info[1].length != 0 %>
+                  <sup>[
+                    <% lifestyle_info[1].sort.each do |reference_number| %>
+                      <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                      <% if reference_number != lifestyle_info[1].max %>,<% end %>
+                    <% end %>]
+                  </sup>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Habit:</b></td>
+          <td>
+            <% if @info_with_ref_numbers["Habit"].nil? %>
+              unknown
+            <% else %>
+              <% @info_with_ref_numbers["Habit"].each do |habit_info| %>
+                <%= habit_info[0] %>
+                <% if habit_info[1].length != 0 %>
+                  <sup>[
+                    <% habit_info[1].sort.each do |reference_number| %>
+                      <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                      <% if reference_number != habit_info[1].max %>,<% end %>
+                    <% end %>]
+                  </sup>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Biochemical information:</b></td>
+          <td>unknown</td>
+        </tr>
+        <tr>
+          <td><b>Chromosome number <small>(2n)</small>:</b></td>
+          <td>
+            <% if @info_with_ref_numbers["ChromosomeNumber"].nil? %>
+              unknown
+            <% else %>
+              <% @info_with_ref_numbers["ChromosomeNumber"].each do |chr_info| %>
+                <%= chr_info[0] %><% if chr_info[1].length != 0 %>
+                  <sup>[
+                    <% chr_info[1].sort.each do |reference_number| %>
+                      <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                      <% if reference_number != chr_info[1].max %>,<% end %>
+                    <% end %>]</sup><% end %><% if chr_info != @info_with_ref_numbers["ChromosomeNumber"].last %>; <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Genome size <small>(1C in Mbp)</small>:</b></td>
+          <td>
+            <% if @info_with_ref_numbers["GenomeSize"].nil? %>
+              unknown
+            <% else %>
+              <% @info_with_ref_numbers["GenomeSize"].each do |genome_info| %>
+                <%= genome_info[0] %><% if genome_info[1].length != 0 %>
+                  <sup>[<% genome_info[1].sort.each do |reference_number| %>
+                      <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                      <% if reference_number != genome_info[1].max %>,<% end %>
+                    <% end %>]</sup><% end %><% if genome_info != @info_with_ref_numbers["GenomeSize"].last %>; <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table><br>
+
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <table>
+                  <tr>
+                    <td><b>Hosts</b></td>
+                    <td><i class="fas fa-chevron-down"></i></td>
+                  </tr>
+                </table>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+            <div class="card-body">
+              <% if @hosts_with_ref_numbers.length == 0 %>
+                unknown
+              <% else %>
+                <table>
+                  <% @hosts_with_ref_numbers.each do |host, ref_numbers| %>
+                    <tr>
+                      <td>
+                        <i><%= link_to host, search_species_path(keyword: host), method: :post%></i>
+                        <% if ref_numbers.length != 0 %>
+                          <sup>[
+                            <% ref_numbers.sort.each do |reference_number| %>
+                              <%= link_to reference_number+1, "#reference-#{reference_number+1}" %>
+                              <% if reference_number != ref_numbers.max %>,<% end %>
+                            <% end %>]
+                          </sup>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <table>
+                  <tr>
+                    <td><b><%= @parasite_header %></b></td>
+                    <td><i class="fas fa-chevron-down"></i></td>
+                  </tr>
+                </table>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+            <div class="card-body">
+              <% if @parasites_with_ref_numbers.length == 0 %>
+                unknown
+              <% else %>
+                <% @parasites_with_ref_numbers.each do |parasite, ref_numbers| %>
+                  <i><%= link_to parasite, search_species_path(scientific_name: parasite), method: :post%></i>
+                  <% if ref_numbers.length != 0 %>
+                    <sup>[
+                      <% ref_numbers.sort.each do |reference_number| %>
+                        <%= link_to reference_number+1, "reference-#{reference_number+1}" %>
+                        <% if reference_number != ref_numbers.max %>,<% end %>
+                      <% end %>]
+                    </sup>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <% if @genbank_info %>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                  <table>
+                    <tr>
+                      <td><b>GenBank</b></td>
+                      <td><i class="fas fa-chevron-down"></i></td>
+                    </tr>
+                  </table>
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+              <div class="card-body">
+                <table id="gen-bank-table">
+                  <tr>
+                    <td>whole genome:</td>
+                    <td>
+                      <% if !@genbank_info.include?("whole_genome") %>
+                        not available
+                      <% else %>
+                        <%= link_to @genbank_info["whole_genome"][0], @genbank_info["whole_genome"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>plastome:</td>
+                    <td>
+                      <% if !@genbank_info.include?("plastome") %>
+                        0
+                      <% else %>
+                        <%= link_to @genbank_info["plastome"][0], @genbank_info["plastome"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>mtDNA:</td>
+                    <td>
+                      <% if !@genbank_info.include?("mtdna") %>
+                        0
+                      <% else %>
+                        <%= link_to @genbank_info["mtdna"][0], @genbank_info["mtdna"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>transcriptome (EST):</td>
+                    <td>
+                      <% if !@genbank_info.include?("est") %>
+                        0
+                      <% else %>
+                        <%= link_to @genbank_info["est"][0], @genbank_info["est"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SRA:</td>
+                    <td>
+                      <% if !@genbank_info.include?("sra") %>
+                        0
+                      <% else %>
+                        <%= link_to @genbank_info["sra"][0], @genbank_info["sra"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>others:</td>
+                    <td>
+                      <% if !@genbank_info.include?("others") %>
+                        0
+                      <% else %>
+                        <%= link_to @genbank_info["others"][0], @genbank_info["others"][1], :target => "_blank" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <table>
+                  <tr>
+                    <td><b>Recent publications</b></td>
+                    <td><i class="fas fa-chevron-down"></i></td>
+                  </tr>
+                </table>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+            <div class="card-body">
+              <% if @recent_publications.length == 0 %>
+                none
+              <% else %>
+                <table>
+                  <% @recent_publications.each do |_publication_count, publication_info| %>
+                    <tr>
+                      <td><%= link_to "#{publication_info["authors"]}, #{publication_info["year"]}", publication_info["url"], target: "_blank" %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <% if Taxon::AVAILABLE_GENOME_BROWSERS.include?(@species) %>
+        <%= link_to "Go to genome browser", jbrowse_path(taxon: @species) %><br>
+      <% end %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "Search for orthogroups", orthogroups_path %><br> <!-- TODO filter!!! -->
+      <% end %>
+      <% if user_signed_in? && (current_user.admin? || current_user.editor? || current_user.group_member?) %>
+        <%= link_to 'Edit species entry', edit_taxon_path(@species_id), :class => 'edit-species' %>
+        <br><br>
+      <% end %>
+
+    </div>
+
+    <div class="right-wrapper">
+      <div class="image-wrapper">
+        <% if @images.length > 0 %>
+          <div class="image-slider">
+            <% @images.each do |image_entry| %>
+              <div><%= image_tag image_entry.image %></div>
+            <% end %>
+          </div>
+          <div class="attribution"></div>
+        <% else %>
+          <div class="file-upload">
+            <% #TODO: file upload %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="gbif-map">
+        <div class="card">
+          <div class="card-header">
+            Occurrences <!--<i class="fas fa-expand"></i>-->
+          </div>
+        </div>
+        <div id="mapid"></div>
+        <script>
+            var mymap = L.map('mapid').setView([40, -0.09], 2);
+            // https://tile.gbif.org/4326/omt/{z}/{x}/{y}@3x.png?style=osm-bright
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var occurrenceData = L.tileLayer(`${gon.gbif_map_url}`, {
+                attribution: `Occurrence data &copy; <a href="${gon.gbif_species_url}" target="_blank">GBIF</a></a>`,
+                maxZoom: 18
+            });
+
+            occurrenceData.addTo(mymap);
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <div class="wiki-container">
+    <h3>References</h3>
+    <table>
+      <% if @unique_references.length > 0 %>
+        <% @unique_references.each do |i, ref| %>
+          <a id="reference-<%= i -%>">
+            <tr>
+              <td id="reference-<%= i %>">[<%= i %>]</td>
+              <% if ref[1] %>
+                <td><%= link_to ref[0], ref[1], target: "_blank" %></td>
+              <% else %>
+                <td><%= ref[0]%></td>
+              <% end %>
+            </tr>
+          </a>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+</body>
+</html>

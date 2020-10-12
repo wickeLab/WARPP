@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <%= javascript_include_tag 'taxon/taxon_index' %>
+  </head>
+  <body>
+  <% content_for :main_content do %>
+    <div class="taxonomy-tree-page-container">
+      <div class="fix-position-wrapper" id="tree-container">
+        <div class="d3-container">
+          <button id='reset-tree' class="btn" title="Reset zoom & recenter"><i class="fas fa-compress-arrows-alt"></i></button>
+          <button id='retract-info' class="btn" title="Retract sidebar"><i class="fas fa-angle-double-right"></i></button>
+        </div>
+      </div>
+      <div class="detailed-information-container" id="width-reference">
+        <div class="actions-container" id="actions-container">
+          <div class="fix-legend-wrapper">
+            <div class="tree-legends">
+              <div id="information-score"></div>
+              <div id="lifespan"></div>
+              <div id="lifestyle"></div>
+              <div id="habit"></div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-container" id="taxonomy-accordion"></div>
+        <div class="filter-container" id="filter-container">
+          <div class="filter-form" id="filter-form"></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </body>
+</html>

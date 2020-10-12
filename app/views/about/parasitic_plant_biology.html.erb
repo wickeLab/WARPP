@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  <% content_for(:main_content) do %>
+    <div class="sub-main">
+      <div class="card" id="main-text-container">
+        <div class="card-header">
+          <h4>Parasitic plant biology at a glance</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <h5>Parasitism in plants</h5>
+            <figure id="fig-1">
+              <%= image_tag 'pp_biology/originsOfParasitismInPlants.png', id: "origin-parasitism" %>
+              <figcaption>
+                <b>Figure 1</b>: Origin of parasitism in plants.
+              </figcaption>
+            </figure>
+            <p>Parasitism represents the most extreme case of plant-plant interactions,
+              in which the parasitic plant lives fully or partially at the expense of another plant,
+              the host. A parasitic way of life in plants coincides with a transition from primary production
+              to heterotrophy, which is characterized by the consumption of organic carbon. The parasitic
+              lifestyle in plants brought about two fundamentally different feeding modes:
+            </p>
+            <ul>
+              <li><b>Haustorial parasitism</b>, where the heterotrophic plant feeds directly on one or many autotrophs with the help of a specialized feeding organ, the haustorium.</li>
+              <li><b>Mycoheterotrophy</b>, where the heterotrophic plant epiparasitizes mycorrhizal networks for nutrition.</li>
+            </ul>
+
+            <p>Haustorial parasitism has evolved twelve times independently and is known only in flowering plants
+              (<%= link_to '#fig-1' do %>Figure&nbsp;1<% end %>)
+              (<%= link_to "#ref-6" do %>Nickrent,&nbsp;2020<% end %>),
+              perhaps except for the only parasitic gymnosperm <i>Parasitaxus</i>. In contrast,
+              mycoheterotrophy occurs in nearly all land plant lineages
+              (<%= link_to "#ref-5" do %>Merckx&nbsp;et&nbsp;al.,&nbsp;2013<% end %>). Some aspects of parasitic
+              plant biology, such as the parasitic reduction syndrome, appear to similarly apply to both feeding modes
+              (<%= link_to "#ref-11" do %>Wicke&nbsp;and&nbsp;Naumann,&nbsp;2018<% end %>).
+              In contrast, other biological and evolutionary aspects
+              such as metabolism likely require an explicit distinction of the two life forms.
+            </p>
+            <p>
+              Parasitic plants s.l. display depend on heterotrophic carbon uptake to differing extents. Photosynthetic
+              heterotrophs retain the ability of autotrophic nutrition (hemiparasites, partial mycoheterotrophs), whereas
+              nonphotosynthetic heterotrophs (holoparasites) rely entirely on carbon uptake. Holoparasites and obligate
+              chlorophyllous parasites depend on their host to reach the reproductive stage; facultative hemiparasites
+              can fulfill their lifecycle without attaching to a host plant
+              (<%= link_to "#ref-7" do %>Press&nbsp;and&nbsp;Graves,&nbsp;1995<% end %>;
+              <%= link_to "#ref-10" do %>Westwood&nbsp;et&nbsp;al.,&nbsp;2010<% end %>).
+            </p>
+            <p>
+              Within basal angiosperms, the transition from an autotrophic lifestyle to hemi- and holo-heterotrophy
+              evolved twice. All other haustorial parasites belong to the large clade of eudicots. Further, Further,
+              parasitic plants can be either root or stem parasites depending on the site of attachment to their hosts.
+              Among parasitic angiosperms, the complete range of parasitic specializations occurs only within the
+              Broomrape family (Orobanchaceae) and in the Sandalwood order (Santalales) that consist of many distinct
+              families.
+            </p>
+            <h5>Terminology</h5>
+            <p>
+              WARPP uses the terminology of <%= link_to "#ref-11" do %>Wicke&nbsp;&&nbsp;Naumann&nbsp;(2018)<% end %> to address parasitic specializations as follows:
+              <ul>
+                <li><i>Achlorophyllous plant</i>: A non-green plant, i.e., with no (visible) chlorophyll, that relies on the supply of organic carbon, nutrients, and water from another plant or a fungus</li>
+                <li><i>Autotrophic plant</i>: A “self-feeder” and primary producer of complex organic compounds (like carbohydrates) from simpler (inorganic carbon) sources (like CO2) through photosynthesis, thereby converting light into chemical energy</li>
+                <li><i>Facultative heterotroph</i>: A plant that can consume organic carbon from another plant or a fungus but that can also fulfill its life cycle without ever connecting to another organism</li>
+                <li><i>Heterotrophic plant</i>: A plant that is unable to fix inorganic carbon and thus consumes organic carbon from another organism for energy production and biomolecule synthesis</li>
+                <li><i>Holo-heterotrophic plant</i>: A plant that entirely relies on another plant or a fungus to take up and absorb organic carbon, nutrients, and water</li>
+                <li><i>Holoparasite</i>: A heterotrophic plant that obtains all of its organic carbon, nutrients, and water through a non-mutualistic interaction with another plant or a fungus</li>
+                <li><i>Mycoheterotrophic plant</i>: A plant that retrieves all or some organic carbon, nutrients, and water from a mycorrhizal fungus</li>
+                <li><i>Obligate heterotrophs or parasites</i>: A plant that depends on the heterotrophic consumption of organic carbon and/or nutrients and water during at least some developmental stage(s) to fulfill their life cycle</li>
+                <li><i>Parasitic plant</i>: Mostly used to refer to haustorial parasites</li>
+                <li><i>Partial heterotroph</i>: A plant that can take up and utilize organ carbon heterotrophically in addition to assimilating CO2 through own photosynthesis activity</li>
+              </ul>
+            </p>
+
+            <h5>Lifecycle of a haustorial parasite</h5>
+            <figure id="fig-2">
+              <%= image_tag 'pp_biology/lifecycle.png' %>
+              <figcaption>
+                <b>Figure 2</b>: Life cycle of a parasitic plant.
+              </figcaption>
+            </figure>
+            <p>Parasitic plants differ from ordinary angiosperm in their ability or need to withdraw nutrients
+              from the vascular tissue of another a nearby plant. Some parasites have evolved sophisticated strategies
+              to synchronize their lifecycle with their hosts (<%= link_to "#fig-2" do %>Figure&nbsp;2<% end %>). For example, some parasitic plants,
+              though not all, have adapted to sense the presence of nearby hosts before germination. Parasites'
+              strict host requirements for germination needs a period of preconditioning, which prepares the
+              metabolism for the presence of specific chemicals exuded by the host. Once the germination signal
+              is detected, the germinating parasite must form a physical connection with a host. This step involves a
+              second signal, a haustorium initiation factor, which causes the tip of the parasite to re-differentiate
+              into a haustorium that penetrates the host (<%= link_to "#ref-2" do %>Keyes&nbsp;et&nbsp;al.&nbsp;2001<% end %>). The functional gain of such recognition
+              systems arguably ensures their survival, as it prevents suicidal germination in the absence of
+              potential hosts.
+            </p>
+
+            <p>Parasitic plants often lack densely branching root systems, if they form roots at all. Instead,
+              they possess root-like projections with highly-specialized intrusive organs (haustoria)
+              that penetrate foreign roots to establish a direct connection to the vascular system of nearby plants,
+              which then serve as their hosts (<%= link_to "#ref-10" do %>Westwood,&nbsp;2000<% end %>). The haustorium itself forms the physical and
+              physiological connection of the parasite/host systems, critical for the translocation of molecules
+              between both partners (<%= link_to "#ref-3" do %>Kuijt&nbsp;1969<% end %>).  In root parasites, the haustorium can develop from the terminal
+              root meristem, or it originates from lateral roots
+              (<%= link_to "#ref-3" do %>Kujit,&nbsp;1969<% end %>; <%= link_to "#ref-4" do %>Kujit&nbsp;and&nbsp;Toth,&nbsp;1976<% end %>;
+              <%= link_to "#ref-10" do %>Westwood&nbsp;et&nbsp;al.,&nbsp;2010<% end %>). In at least one root-parasitic genus,
+              parasite-host connections may also develop from non-root tissue, such as the hypocotyl (Weber, 1993).
+              In Cuscuta, the exact ontogenetic origin of haustoria remains to be determined. Genome sequencing and
+              extensive transcriptome analysis found that the majority of transcripts were homologous to gene products
+              associated with root development (<%= link_to "#ref-8" do %>Sun&nbsp;et&nbsp;al.,&nbsp;2018<% end %>).
+              Once the haustorial connection is established,
+              the parasite continues its vegetative growth. The parasite develops a strong sink relative to its host,
+              which enables it to channel the flow of water, nutrients, and macromolecules from its host,
+              thereby inhibiting the host plant's development (<%= link_to "#ref-1" do %>Joel,&nbsp;2000<% end %>).
+              To date, it is unclear what defines life
+              history preferences in parasites and induces the reproductive stage,
+              which sets the seeds for the next generation.
+            </p>
+          </p>
+          <div class="card-footer about-footer">
+            <h5>Literature cited</h5>
+            <ul class="references">
+              <li id="ref-1"><b>Joel DM</b> (2000) The long-term approach to parasitic weeds control: manipulation of specific
+                developmental mechanisms of the parasite. Crop Prot <b>19</b>: 753–758</li>
+              <li id="ref-2"><b>Keyes, W. J., Taylor, J. V., Apkarian, R. P., & Lynn, D. G.</b> (2001). Dancing together. Social controls
+                in parasitic plant development. Plant Physiology <b>127</b>: 1508-1512.</li>
+              <li id="ref-3"><b>Kujit J</b> (1969) The biology of parasitic flowering plants, 1st ed. University of California
+                Press, Berkeley, CA,</li>
+              <li id="ref-4"><b>Kujit J, Toth R</b> (1976) Ultrastructure of angiosperm haustoria - A review. Ann Bot <b>40</b>:
+                1121–1130</li>
+              <li id="ref-5"><b>Merckx VSFT, Mennes CB, Peay KG, Geml J</b> (2013) Evolution and diversification. In V Merckx, ed,
+                Mycoheterotrophy. Springer, New York, NY, pp 215–244</li>
+              <li id="ref-6"><b>Nickrent DL</b> (2020) Parasitic angiosperms: How often and how many? Taxon.
+                doi: 10.1002/tax.12195</li>
+              <li id="ref-7"><b>Press MC, Graves J</b> (1995) Parasitic Plants, 1st ed. Springer Netherlands</li>
+              <li id="ref-8"><b>Sun G, Xu Y, Liu H, Sun T, Zhang J, Hettenhausen C, Shen G, Qi J, Qin Y, Li J, et al</b> (2018)
+                Large-scale gene losses underlie the genome evolution of parasitic plant Cuscuta australis. Nat Commun
+                <b>9</b>: 2683</li>
+              <li id="ref-9"><b>Weber HC</b> (1993) Parasitismus von Blütenpflanzen. Wissenschaftliche Buchgesellschaft,
+                Darmstadt</li>
+              <li id="ref-10"><b>Westwood JH, Yoder JI, Timko MP, dePamphilis CW</b> (2010) The evolution of parasitism in plants.
+                Trends Plant Sci <b>15</b>: 227–235</li>
+              <li id="ref-11"><b>Wicke S, Naumann J</b> (2018) Molecular evolution of plastid genomes in parasitic flowering plants.
+                In S-M Chaw, RK Jansen, eds, Plast. Genome Evol., 1st ed. Elsevier, pp 315–347</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </body>
+</html>

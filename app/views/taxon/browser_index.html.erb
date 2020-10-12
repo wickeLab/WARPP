@@ -1,0 +1,33 @@
+<html>
+<%= javascript_include_tag 'taxon/browser_index' %>
+<body>
+<% content_for :main_content do %>
+  <div class="sub-main">
+    <div class="card" id="main-text-container">
+      <div class="card-header" id="browser-index">
+        <h3>Choose a parasitic plant family of interest</h3>
+      </div>
+      <div class="card-body" id="browser-index">
+        <div class="table-container">
+          <table>
+            <% @families.each do |family, exists| %>
+              <% if exists %>
+                <tr><td><%= link_to family, taxonomy_browser_path(family: family) %></td></tr>
+              <% else %>
+                <tr><td><%= family %></td></tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="image-slider">
+          <% @images.each do |image_entry| %>
+            <div><%= image_tag image_entry %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

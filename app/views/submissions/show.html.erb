@@ -1,0 +1,167 @@
+<html>
+<body>
+<% content_for(:main_content) do %>
+  <div class="edit-container">
+    <h2>Submission #<%= @submission_id %></h2>
+    <h5>Suggested by <%= @user_name %></h5>
+
+    <div class="species-edit-form">
+
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Scientific name</h5>
+        </div>
+        <div class="card-body">
+          <div class="flex-container">
+            <div>Scientific name:</div>
+            <%= @old_name %> <% if @new_name %>=> <%= @new_name %><% end %>
+          </div>
+          <% if @lineage %>
+            <div class="flex-container">
+              <div>Family:</div>
+              <%= @lineage[1] %>
+            </div>
+            <div class="flex-container">
+              <div>Genus:</div>
+              <%= @lineage[0] %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Species information</h5>
+        </div>
+        <div class="card-body">
+          <div class="flex-container">
+            <div>Lifespan:</div>
+            <%= @old_lifespan %> <% if @lifespan %>=> <%= @lifespan["value"] %><% end %>
+          </div>
+          <div class="three-columns editable-list">
+            <% if @lifespan %>
+              <% @lifespan["references"].each do |reference| %>
+                <text><%= reference %></text>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="flex-container">
+            <div>Lifestyle:</div>
+            <%= @old_lifestyle %> <% if @lifestyle %>=> <%= @lifestyle["value"] %><% end %>
+          </div>
+          <div class="three-columns editable-list">
+            <% if @lifestyle %>
+              <% @lifestyle["references"].each do |reference| %>
+                <text><%= reference %></text>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="flex-container">
+            <div>Habit:</div>
+            <%= @old_habit %> <% if @habit %>=> <%= @habit["value"] %><% end %>
+          </div>
+          <div class="three-columns editable-list">
+            <% if @habit %>
+              <% @habit["references"].each do |reference| %>
+                <text><%= reference %></text>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="flex-container">
+            <div>Chromosome number (2n):</div>
+            <%= @old_chromosome_number %> <% if @chromosome_number %>=> <%= @chromosome_number["value"] %><% end %>
+          </div>
+          <div class="three-columns editable-list">
+            <% if @chromosome_number %>
+              <% @chromosome_number["references"].each do |reference| %>
+                <text><%= reference %></text>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="flex-container">
+            <div>Genome Size (1C in Mbp):</div>
+            <%= @old_genome_size %> <% if @genome_size %>=> <%= @genome_size["value"] %><% end %>
+          </div>
+          <div class="three-columns editable-list">
+            <% if @genome_size %>
+              <% @genome_size["references"].each do |reference| %>
+                <text><%= reference %></text>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Parasitism</h5>
+        </div>
+        <div class="card-body">
+          <h5>Hosts to add</h5>
+          <div class="three-columns editable-list">
+            <% if @hosts_to_add %>
+              <% @hosts_to_add.each do |host, references| %>
+                <div class="relation-wrapper">
+                  <text><%= host %></text>
+                  <div class="references-wrapper">
+                    <% references.each do |reference| %>
+                      <text><%= link_to reference, "http://doi.org/#{reference}" %></text>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <h5>Parasites to add</h5>
+          <div class="three-columns editable-list">
+            <% if @parasites_to_add %>
+              <% @parasites_to_add.each do |parasite, references| %>
+                <div class="relation-wrapper">
+                  <text><%= parasite %></text>
+                  <div class="references-wrapper">
+                    <% references.each do |reference| %>
+                      <text><%= link_to reference, "http://doi.org/#{reference}" %></text>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <h5>Hosts to delete</h5>
+          <div class="three-columns editable-list">
+            <% if @hosts_to_delete %>
+              <% @hosts_to_delete.each do |host| %>
+                <div class="relation-wrapper">
+                  <text><%= host %></text>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <h5>Parasites to delete</h5>
+          <div class="three-columns editable-list">
+            <% if @parasites_to_delete %>
+              <% @parasites_to_delete.each do |parasite| %>
+                <div class="relation-wrapper">
+                  <text><%= parasite %></text>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <%= button_to "Accept", accept_submission_path, class: "btn custom-btn", method: :get %>
+        <%= button_to "Reject", reject_submission_path, class: "btn custom-btn", method: :get %>
+        <% if current_user.admin? %>
+          <%= button_to "Edit", edit_submission_path, class: "btn custom-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

@@ -1,0 +1,28 @@
+// Place all the styles related to the PpgJobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#uploaded-files {
+  margin: 5px 0 10px 0;
+}
+
+td.median {
+  border-left: solid 2px $clr-standard-border;
+  border-right: solid 2px $clr-standard-border;
+}
+
+td.functionality {
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+p.tool-description {
+  max-width: 80ch;
+
+  .bolder {
+    font-weight: 1000;
+  }
+}
+

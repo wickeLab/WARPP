@@ -1,0 +1,41 @@
+.devise-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.devise-subcontainer {
+  display: inline-block;
+  text-align: left;
+}
+
+.field {
+  margin-top: 10px;
+  border-bottom: 1px solid #343a40;
+}
+
+.remember-field {
+  margin-top: 10px;
+}
+
+.devise-label {
+  padding-right: 5px;
+}
+
+.input-field {
+  border: 0;
+  float: right;
+}
+
+.submit-button {
+  background: $clr-base-grey;
+  border: 0;
+  color: #ffffff;
+  height: 30px;
+  min-width: 70px;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background: $clr-yellowish-green;
+}

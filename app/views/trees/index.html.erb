@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <%= javascript_include_tag 'trac' %>
+  </head>
+  <body>
+    <% content_for :main_content do %>
+      <div class="trait-rec-main">
+        <div class="card" id="main-text-container">
+          <div class="card-header">
+            <h4>Trait reconstruction - Orobanchaceae</h4>
+          </div>
+          <div class="card-body">
+            <div class="js-container-outer">
+              <div class="js-container"></div>
+              <div class="js-tooltip"></div>
+              <div class="filter-tools">
+                <div class="js-button"></div>
+                <div class="trait-rec-legend"></div>
+                <div class="trait-rec-pie-zoom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<head>
+  <%= javascript_include_tag 'server_jobs/ppg_queries' %>
+</head>
+<body>
+<%= content_for :main_content do %>
+<div class="sub-main">
+  <%= link_to 'Back', new_ppg_job_path %>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5>What does PPGS offer?</h5>
+    </div>
+    <div class="card-body">
+      <p class="tool-description">
+        The <b class="bolder">P</b>lastid </b class="bolder">P</b>seudo<b class="bolder">g</b>ene
+        <b class="bolder">S</b>corer (PPGS) enables users to scan parasitic
+        plant plastomes for a set list of currently 78 query genes and obtain information on the availability
+        and functionality of those genes. Users have a list of parameters at their disposal to tweak the
+        PPG Scorer to their needs. All jobs will run in the background and can be accessed through the <%= link_to "server job table", server_jobs_path %>.
+        Additionally, e-mail notification of finished jobs can be requested when
+        creating a new job. Results can be downloaded as a zip file, but functionality scores will also
+        be displayed in a table. We provide a <%= link_to "reference database", ppg_jobs_references_path %> and the median functionality score per
+        query for easier classification of the results.
+      </p>
+    </div>
+
+    <div class="card-header" id="headingTwo">
+      <h5>List of query genes</h5>
+    </div>
+    <div class="card-body">
+      <%= render 'ppg_queries/ppg_queries_datatable' %>
+    </div>
+  </div>
+</div>
+<% end %>
+</body>

@@ -1,0 +1,14 @@
+.alert.alert-notice {
+  background-color: clr("annual");
+}
+
+.alert.alert-alert {
+  background-color: clr("reliable");
+  color: clr("white");
+}
+
+.alert.alert-error {
+  background-color: #B00100;
+  opacity: 0.8;
+  color: #ffffff;
+}

@@ -1,0 +1,79 @@
+<head>
+  <%= javascript_include_tag 'server_jobs/new_ppg' %>
+</head>
+<body>
+<%= content_for :main_content do %>
+
+  <div class="edit-container">
+
+    <h2>Plastid Pseudogene Scorer</h2>
+    <%= link_to 'For more information click here', ppg_jobs_background_path %>
+
+    <%= simple_form_for @ppg_job do |f| %>
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Upload your input data</h5>
+          <small>Please do not upload more than 20 target sequences total. We will ignore all additional sequences.</small>
+        </div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <label for="exampleTextareaBio">Paste fasta sequences</label>
+            <div class="input-group">
+              <textarea class="form-control" id="textarea-seqs" rows="2" placeholder=">seq1&#10;AGTACGATCGATCA" name="seqs"></textarea>
+            </div>
+          </div>
+          <input class="btn btn-primary" value="Clear text field" type="button" onclick="clearText()">
+
+          <%= f.input :target_fastas, as: :file, label: 'Choose file', input_html: { multiple: true, id: 'fasta-upload' } %>
+          <table id="uploaded-files"></table>
+
+          <p>Want to use your own queries? PPG Scorer will soon be available on GitHub.</p>
+        </div>
+
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Set your parameters</h5>
+        </div>
+        <div class="card-body">
+          <%= f.input :maxintron, as: :numeric, input_html: { min: '0', step: '1', placeholder: '6000' } %>
+
+          <%= f.input :minintron, as: :numeric, input_html: { min: '0', step: '1', placeholder: '200' } %>
+
+          <small class="form-text text-muted">Multiselect</small>
+          <%= f.input :stringency, collection: %w[stringent relaxed], input_html: { class: 'selectpicker', multiple: true } %>
+
+          <%= f.input :stringency_value, as: :numeric, input_html: { min: '0', step: 'any', placeholder: '0.02' } %>
+
+          <%= f.input :best_hits, as: :numeric, input_html: { min: '1', step: '1', placeholder: '1' } %>
+        </div>
+
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Output configuration</h5>
+        </div>
+        <div class="card-body">
+          <%= f.input :out_identity, label: 'Identity' %>
+          <%= f.input :out_frame_shifts, label: 'Frame shifts' %>
+          <%= f.input :out_missing_genes, label: 'Missing genes' %>
+          <%= f.input :out_sequences, label: 'Sequences' %>
+          <%= f.input :out_annotation, label: 'Annotation files (gff3)' %>
+        </div>
+
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">Submit job</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-check">
+            <%= f.input :email_notification, label: 'Be notified by email', input_html: { onclick: "mailNotify()", id: 'myCheck' } %>
+          </div>
+          <div class="form-check" id="mail-notifier" style="display: none">
+            <%= f.input :title, label: 'Job name' %>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit job</button>
+          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+</body>

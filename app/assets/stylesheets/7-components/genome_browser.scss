@@ -1,0 +1,24 @@
+// Place all the styles related to the GenomeBrowser controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.genome-switch {
+  margin-top: 30vh;
+  text-align: center;
+}
+
+.jbrowse-frame {
+  width: 100%;
+  min-height: calc(100vh - 92px);
+  border: none;
+  display: block;
+}
+
+.genome-browser-ref {
+  border-radius: 0;
+  border: none;
+
+  .card-header {
+    background-color: transparent;
+  }
+}

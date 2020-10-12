@@ -1,0 +1,7 @@
+<ul>
+  <% activerecord_entries.each do |entry, id| %>
+    <li>
+      <%= link_to entry, taxonomic_level_path(id) %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,29 @@
+.orthogroup-table-wrapper {
+  width: 95%;
+  margin: 20px auto auto auto;
+
+  .orthogroup-viewpoint {
+    width: 100%;
+    overflow-x: scroll;
+
+    .dataTable {
+      width: 100%;
+    }
+  }
+}
+
+td.a-thaliana {
+  background-color: lightsteelblue !important;
+  border-right: solid 1px #dee2e6;
+}
+
+td.function-realm {
+  background-color: aliceblue !important;
+  border-left: solid 1px #dee2e6;
+  border-right: solid 1px #dee2e6;
+
+  ul {
+    padding: 0 0 0 5px;
+    list-style-type: "- ";
+  }
+}

@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header" id="headingOne">
+    <h5 class="mb-0">Your input data</h5>
+  </div>
+  <div class="card-body">
+
+  </div>
+
+  <div class="card-header" id="headingOne">
+    <h5 class="mb-0">Your settings</h5>
+  </div>
+  <div class="card-body">
+    <table class="wiki-table">
+      <tr>
+        <td><b>Maxintron:</b></td>
+        <td><%= @ppg_job.maxintron || PpgJob::DEFAULT_MAXINTRON %></td>
+      </tr>
+      <tr>
+        <td><b>Minintron:</b></td>
+        <td><%= @ppg_job.minintron || PpgJob::DEFAULT_MININTRON %></td>
+      </tr>
+      <tr>
+        <td><b>Stringency:</b></td>
+        <td><%= @ppg_job.stringency.join(', ') %></td>
+      </tr>
+      <tr>
+        <td><b>Stringency value:</b></td>
+        <td><%= @ppg_job.stringency_value || PpgJob::DEFAULT_STRINGENCY_VALUE %></td>
+      </tr>
+      <tr>
+        <td><b>Best hits:</b></td>
+        <td><%= @ppg_job.best_hits || PpgJob::DEFAULT_BEST_HITS %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-header" id="headingOne">
+    <h5 class="mb-0">Output configuration</h5>
+  </div>
+  <div class="card-body">
+    <table class="wiki-table">
+      <tr>
+        <td><b>Identity:</b></td>
+        <td><%= @ppg_job.out_identity %></td>
+      </tr>
+      <tr>
+        <td><b>Frame shifts:</b></td>
+        <td><%= @ppg_job.out_frame_shifts %></td>
+      </tr>
+      <tr>
+        <td><b>Missing genes:</b></td>
+        <td><%= @ppg_job.out_missing_genes %></td>
+      </tr>
+      <tr>
+        <td><b>Sequences:</b></td>
+        <td><%= @ppg_job.out_sequences %></td>
+      </tr>
+      <tr>
+        <td><b>Annotation files:</b></td>
+        <td><%= @ppg_job.out_annotation %></td>
+      </tr>
+    </table>
+  </div>
+
+  <% unless @ppg_job.finished_run? %>
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">Notification</h5>
+    </div>
+    <div class="card-body">
+      <% if @ppg_job.email_notification %>
+        We will notify you via email as soon as your job has finished.
+      <% else %>
+        You chose not to be notified via email.
+      <% end %>
+    </div>
+  <% end %>
+</div>

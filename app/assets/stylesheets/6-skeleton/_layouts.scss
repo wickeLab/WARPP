@@ -1,0 +1,20 @@
+// MAIN sub-compartments
+.sub-main {
+  max-width: 80%;
+  margin: 20px auto 50px auto;
+  height: auto;
+  overflow-x: auto;
+}
+
+#main-text-container {
+  height-min: 500px;
+  background-color: #f5f5f5;
+  border-color: #e0e0e0;
+  border-style: solid;
+  border-width: 1px 1px 2px 1px;
+  padding: 10px 10px 10px 10px;
+}
+
+.card#main-text-container .card-header {
+  background: transparent;
+}

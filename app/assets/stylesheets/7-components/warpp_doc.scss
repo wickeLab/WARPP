@@ -1,0 +1,48 @@
+.documentation-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-navigation {
+  background-color: $clr-off-white;
+  border: $clr-standard-border 1px solid;
+  padding: 20px 25px 50px 10px;
+  min-width: 515px;
+
+  .chapter-navigation {
+    position: fixed;
+
+    ul {
+      list-style-type: none;
+      padding-left: 15px;
+      font-size: x-large;
+
+      ul {
+        font-size: 1.25rem;
+
+        ul {
+          list-style-type: upper-roman;
+          padding-left: 25px;
+
+          ul {
+            list-style-type: lower-roman;
+          }
+        }
+      }
+    }
+  }
+}
+
+.documentation {
+  max-width: 80ch;
+  margin: 20px auto 50px 100px;
+
+  h2::before, h3::before, h4::before, h5::before {
+    display: block;
+    content: " ";
+    margin-top: -130px;
+    height: 130px;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

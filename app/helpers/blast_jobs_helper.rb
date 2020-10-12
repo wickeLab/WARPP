@@ -1,0 +1,2 @@
+module BlastJobsHelper
+end

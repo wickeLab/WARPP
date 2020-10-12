@@ -1,0 +1,109 @@
+// Place all the styles related to the Tree controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.trait-rec-main {
+  max-width: 95%;
+  margin: 20px auto 50px auto;
+}
+
+.js-container-outer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.filter-tools {
+  margin-left: 10px;
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  max-width: 160px;
+}
+
+// TREE //
+
+.js-container {
+  display: flex;
+  flex: 1;
+  min-width: 700px;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.node text {
+  font-family: Serif;
+  font-size: 12px;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+// BUTTONS / SELECTS //
+
+.js-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.js-button .bootstrap-select {
+  width: 160px !important;
+  margin-bottom: 5px;
+}
+
+.js-button .btn {
+  //width: fit-content;
+  background: #ffffff;
+  border-radius: 5px;
+  border-color: #e0e0e0;
+  border-style: solid;
+  border-width: 1px 1px 2px 1px;
+}
+
+// TOOLTIP //
+
+.js-container-outer .js-tooltip {
+  display: flex;
+  flex: 3;
+  border-radius: 8px;
+  background-color: lightsteelblue;
+  font-size: 14px;
+  min-width: 150px;
+  height: 490px;
+  text-align: left;
+  overflow-y: scroll;
+  max-width: 200px;
+}
+
+// Legend tooltip //
+
+.trait-rec-legend {
+  margin-top: 10px;
+  max-width: 160px;
+  overflow: hidden;
+  max-height: 100px;
+}
+
+.trait-rec-pie-zoom {
+  margin-top: 5px;
+  max-width: 160px;
+  overflow: hidden;
+}
+
+.trait-rec-pie-zoom .tooltip-legend {
+  position: absolute;
+  text-align: left;
+  padding: 2px;
+  background: #FFFFFF;
+  border: 1px solid #313639;
+  border-radius: 8px;
+  pointer-events: none;
+  //font-size: 14px;
+}

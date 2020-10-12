@@ -1,0 +1,3 @@
+@mixin standard-border-style($border-width: 1) {
+  border: #e0e0e0 solid #{$border-width}px;
+}

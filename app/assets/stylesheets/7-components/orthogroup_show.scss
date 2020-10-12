@@ -1,0 +1,160 @@
+// Place all the styles related to the Orthogroup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.orthogroup-main {
+  display: flex;
+  height: calc(100vh - 92px);
+
+  .fix-position-wrapper {
+    width: 100vw;
+    transition: width 600ms ease;
+
+    .d3-container {
+      .full-node-name {
+        font-family: AshburyLig serif;
+        font-size: 12px;
+        position: absolute;
+        width: 250px;
+        min-height: 60px;
+        background: lightsteelblue;
+        z-index: 9999;
+        padding: 2px;
+        border: 0;
+        border-radius: 8px;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .tool-container-outer {
+    flex-shrink: 0;
+    z-index: 500;
+    display: flex;
+    margin-left: auto;
+
+    .card#node-leaves {
+      width: 250px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      border-radius: 0;
+      // border-top: none;
+      // border-bottom: none;
+
+      .card-header {
+        border-top: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      .card-body {
+        flex-shrink: 0;
+      }
+
+      .node-leaf-info {
+        display: inline-block;
+        position: relative;
+      }
+
+      .node-leaf-info .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: lightsteelblue;
+        border-radius: 8px;
+        padding: 2px;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+      }
+
+      .node-leaf-info:hover .tooltip-text {
+        visibility: visible;
+      }
+
+      .card-body#function-realm {
+        flex-shrink: 0 !important;
+        flex-grow: 0 !important;
+      }
+
+      .js-tooltip {
+        font-size: 14px;
+        width: 220px;
+        text-align: left;
+        max-height: 100%;
+        overflow: scroll;
+      }
+
+      .node-detail-list {
+        width: 220px;
+      }
+    }
+
+    .tools {
+      display: flex;
+      flex-direction: column;
+      background-color: $clr-off-white;
+      padding: 0.75rem 1.25rem;
+      overflow-y: auto;
+
+      .accordion {
+        width: 300px;
+        font-family: AshburyLig, serif;
+
+        .fa {
+          margin-right: 5px;
+        }
+
+        .card {
+          border: none;
+        }
+
+        .card-header {
+          height: 30px;
+          padding: 0;
+          background: transparent;
+
+          .btn {
+            padding: 0 0 0 5px;
+            color: $clr-dark-grey;
+          }
+        }
+
+        .card-body {
+          padding: 0 0 0 5px;
+          border-bottom: 1px rgba(0, 0, 0, 0.125) solid;
+
+          button {
+            border: none;
+            background: transparent;
+            text-align: left;
+            color: $clr-yellowish-green;
+          }
+
+          button:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .downloads {
+        margin-top: auto;
+        width: 300px;
+
+        .btn, button {
+          background: #e0e0e0;
+          margin-bottom: 5px;
+          border-radius: 5px;
+          border-color: #e0e0e0;
+          border-style: solid;
+          border-width: 1px 1px 2px 1px;
+          width: 100% !important;
+        }
+
+        .btn:hover, button:hover {
+          background: #7a306c;
+          border-color: #7a306c;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

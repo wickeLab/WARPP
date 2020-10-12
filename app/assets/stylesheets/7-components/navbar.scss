@@ -1,0 +1,166 @@
+// Navbar
+
+.navbar-custom {
+  background-color: $clr-base-grey;
+  padding: 6px 16px 6px 16px;
+  z-index: 9800;
+  height: 60px !important;
+
+  .navbar-icon-container {
+    width: 44px;
+    height: 44px;
+    margin-right: 0.4rem;
+
+    .warpp-icon {
+      height: 44px;
+      width: 44px;
+    }
+  }
+
+  .navbar-brand {
+    font-family: Objet_Light_Italic;
+  }
+
+  .navbar-brand:hover {
+    color: #ffffff;
+  }
+
+  .navbar-toggler {
+
+  }
+
+  .navbar-collapse.show {
+    position: relative;
+    padding-top: 10px;
+    background-color: $clr-base-grey;
+    @include columns(2, 20px, false);
+
+    .dropdown-menu.show, ul > li > ul {
+      background-color: $clr-off-white;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+
+
+
+
+
+
+  .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .nav-link.dropdown-toggle:hover {
+    color: #7a306c;
+  }
+
+  .nav-link.dropdown-toggle {
+    color: #ffffff;
+  }
+
+  .form-inline .input-group .form-control::placeholder {
+    color: rgba(255,255,255,.5);
+  }
+
+  .form-inline .input-group {
+    border-bottom: 1px #ffffff solid;
+  }
+
+  .form-inline .input-group .form-control {
+    background-color: $clr-base-grey;
+    border: 0;
+    color: #ffffff;
+  }
+
+  .form-inline .input-group .form-control:focus {
+    box-shadow: none;
+  }
+
+  .form-inline .input-group .btn {
+    float: right;
+    color: #ffffff;
+  }
+}
+
+
+
+
+
+
+
+
+.dropdown-columns {
+  @include columns(2, 20px, false);
+}
+
+.dropdown-menu#user-tool-menu {
+  width: auto !important;
+
+  ul {
+    list-style: none;
+    padding-left: 1rem;
+  }
+}
+
+.fa-bars {
+  color: $clr-white;
+}
+
+ul .navbar-nav {
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+li .nav-item {
+  display: inline-block;
+  float: none;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: rgba(255,255,255,.8);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+}
+
+
+.btn.nav-link {
+  background: #e0e0e0;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-color: #e0e0e0;
+  border-style: solid;
+  border-width: 1px 1px 2px 1px;
+  margin-left: 10px;
+}
+
+.btn.nav-link:hover {
+  background: #7a306c;
+  border-color: #7a306c;
+}
+
+#devise-button {
+  color: $clr-dark-grey;
+  box-shadow: 2px 2px 5px 1px #777777;
+}
+
+#devise-button:hover {
+  color: #ffffff;
+  box-shadow: 2px 2px 5px 1px #777777;
+}
+
+.navbar-custom .form-inline .selectpicker {
+  background-color: $clr-base-grey;
+}
+
+.dropdown-menu#user-tool-menu {
+  left: auto !important;
+  right: 0 !important;
+}

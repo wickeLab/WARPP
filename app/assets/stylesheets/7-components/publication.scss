@@ -1,0 +1,80 @@
+// Place all the styles related to the Publication controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
+}
+*/
+
+.publications-wrapper {
+  max-width: 100vw;
+  display: flex;
+  @include standard-height;
+
+  #publications-datatable_wrapper {
+    margin: 5px 5px 0 5px;
+  }
+
+  .table-wrapper {
+    flex: 1;
+
+    table {
+      width: 100% !important;
+    }
+  }
+
+  .fix-feed {
+    width: 450px;
+    transition: width 1200ms ease;
+
+    .rss-feed {
+      display: flex;
+      background-color: $clr-base-grey;
+      position: fixed;
+      overflow-x: hidden;
+      height: calc(100vh - 60px);
+
+      .button-container {
+        flex-shrink: 0;
+
+        .btn {
+          width: 45px;
+          i {
+            color: $clr-white;
+          }
+        }
+      }
+
+      .publications-feed {
+        overflow-y: auto;
+
+        .card {
+          border-radius: 0;
+        }
+
+        .card-header {
+          border-top: 1px solid #dFdfdf;
+        }
+
+        .card-header:first-of-type {
+          border-top: none;
+        }
+
+        .card-body:last-of-type {
+          padding-bottom: 40px;
+        }
+      }
+    }
+  }
+}

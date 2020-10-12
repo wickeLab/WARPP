@@ -1,0 +1,43 @@
+<html>
+<head>
+  <%= javascript_include_tag 'genome_browser' %>
+</head>
+<body>
+<% content_for :main_content do %>
+  <div class="genome-switch">
+    <h2>Select genome</h2>
+    <%= select_tag "select_genome", options_for_select(@genomes), class: "selectpicker", id: "genomes", "data-live-search": true %>
+    <%= button_tag "Go", type: 'button', onclick: "getGenomeBrowser()", class: 'btn btn-default' %>
+  </div>
+
+  <br>
+  <div class="sub-main">
+    <div class="card genome-browser-ref">
+      <div class="card-header" id="headingOne">
+        <h5>References</h5>
+      </div>
+      <div class="card-body">
+        <table>
+          <tr>
+            <td>Arabidopsis thaliana</td>
+            <td>GenBank (<a href="https://www.ncbi.nlm.nih.gov/assembly/GCF_000001735.4">TAIR10.1</a>)</td>
+          </tr>
+          <tr>
+            <td>Cuscuta australis</td>
+            <td>GenBank (<a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_003260385.1/">Cau_v1.0</a>)</td>
+          </tr>
+          <tr>
+            <td>Cuscuta campestris</td>
+            <td><a href="https://www.plabipd.de/project_cuscuta2/start.ep">Cucam_0.32</a></td>
+          </tr>
+          <tr>
+            <td>Striga asiatica</td>
+            <td>GenBank (<a href="https://www.ncbi.nlm.nih.gov/assembly/GCA_008636005.1/">SGA_v2.0</a>)</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

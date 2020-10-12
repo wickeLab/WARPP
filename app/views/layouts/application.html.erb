@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Warpp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application.js' %>
+  <%= favicon_link_tag asset_path('warpp_icons/color3_64.png') %>
+  <%= Gon::Base.render_data %>
+</head>
+
+<body>
+<header>
+  <%= render 'layouts/navbar' %>
+</header>
+<main>
+  <%= content_for?(:main_content) ? yield(:main_content) : "Default" %>
+  <%= render 'layouts/flash_messages' %>
+</main>
+<footer>
+  <div class="on-the-left">Wicke lab, 2020</div>
+  <div class="on-the-right">
+    <%= link_to "Legal disclosure", legal_disclosure_path, :class => 'footer-link' %>
+    |
+    <%= link_to "Privacy policy", privacy_policy_path, :class => 'footer-link' %>
+  </div>
+</footer>
+<%= yield %>
+</body>
+</html>

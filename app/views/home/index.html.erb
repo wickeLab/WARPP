@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<% content_for(:main_content) do %>
+  <div class="sub-main">
+    <div class="card" id="main-text-container">
+      <div class="card-header">
+        <h4>WARPP</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+        <p>
+          <%= image_tag "warpp_icons/color_large.png", class: "warpp-icon" %>
+          Welcome to the <i>Web Application for the Research of Parasitic Plants</i>–WARPP!
+        </p>
+        <p>
+          The aim of this resource is to facilitate international efforts for the study of
+          <%= link_to "parasitic plant biology", parasitic_plant_biology_path %> by providing a central hub
+          of curated evolutionary, ecological, and genetic data.
+          The current version provides a first community framework for researchers
+          to test this web app and use the already collected and curated data of selected species for
+          their work. WARPP v1 puts its focus on the agro-economically most important
+          parasitic plant family, Orobanchaceae, as well as a few other weeds (e.g., <i>Cuscuta</i> spp.).
+          Species-specific data, where available, can be accessed via the <%= link_to "taxonomy browser", taxonomy_browser_index_path %>.
+        </p>
+
+        We introduce the first set of online tools, including:
+        <ul>
+          <li>
+            A <%= link_to "genome browser", genome_browsers_path %>, centralizing genomic information for parasitic plants
+          </li>
+          <li>
+            An <%= link_to "orthogroup summary", orthogroups_path %>, detailing the presence and absence of orthologous genes
+          </li>
+          <li>
+            An <%= link_to "analysis of ancestral traits", trees_path %>, showing how life history preferences evolved
+          </li>
+        </ul>
+        <p>More online tools like a gene functionality scorer will follow soon!</p>
+        <p>
+          This project is under active development.<br>
+          Now, we need and rely on the scientific community to populate WARPP with more data and to further the development of new WARPP tools.
+          All users are encouraged to help expand the web app reviewing and submitting new information,
+          but also by suggesting improvements or ideas for new online tools.
+        </p>
+
+        <p><%= link_to "Register", new_user_registration_path %> to become a WARPP user and curator, and begin to enjoy exploring WARPP v1.</p>
+
+        Welcome to the <i>Web Application for the Research of Parasitic Plants</i> also known as WARPP.
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

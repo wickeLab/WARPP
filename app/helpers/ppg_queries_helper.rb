@@ -1,0 +1,2 @@
+module PpgQueriesHelper
+end

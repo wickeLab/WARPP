@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<% content_for(:main_content) do %>
+  <div class="sub-main">
+    <div class="card" id="main-text-container">
+      <div class="card-header">
+        <h4>The species that you were searching for does not exist.<br>
+          Did you mean</h4>
+      </div>
+      <div class="card-body">
+        <table>
+          <% @alternatives.each do |alternative| %>
+            <tr><td><%= link_to alternative.scientific_name, taxon_path(alternative.id), id: alternative.information_status%></td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

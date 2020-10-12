@@ -1,0 +1,94 @@
+<nav class="navbar navbar-custom navbar-expand-lg fixed-top">
+  <a class="navbar-icon-container" href="<%= root_path %>"><%= image_tag "warpp_icons/color3_64.png", class: "warpp-icon" %></a>
+  <a class="navbar-brand" href="<%= root_path %>">WARPP<sub>v1</sub></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="navbar-collapse collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= root_path %>">WARPP</a>
+          <a class="dropdown-item" href="<%= parasitic_plant_biology_path %>">Parasitic Plant Biology</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= warpp_path %>" data-turbolinks="false">Documentation<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= taxonomy_browser_index_path %>" data-turbolinks="false">Taxonomy<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= publications_path %>">Publications<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tools
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= trees_path %>" data-turbolinks="false">Trait reconstruction</a>
+          <a class="dropdown-item" href="<%= orthogroups_path %>" data-turbolinks="false">Orthogroups</a>
+          <% if user_signed_in? %>
+            <a class="dropdown-item" href="<%= new_ppg_job_path %>">PPGS</a>
+            <a class="dropdown-item" href="<%= new_blast_job_path %>">BLAST</a>
+          <% else %>
+            <div class="dropdown-divider"></div>
+            <small class="dropdown-item">(for registered users only)</small>
+            <a class="dropdown-item disabled" href="#">PPGS</a>
+            <a class="dropdown-item disabled" href="#">BLAST</a>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= genome_browsers_path %>">Genome browser</a>
+        </div>
+      </li>
+    </ul>
+
+    <%= form_with url: search_species_path, class: "form-inline" do |f| %>
+      <div class="input-group">
+        <%= f.text_field :keyword, placeholder: "Search database", class: "form-control" %>
+
+        <%= f.button type: "submit", class: "btn" do %>
+          <i class="fa fa-search"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i> <%= current_user.user_name if user_signed_in? %>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="user-tool-menu" style="width: 10rem;">
+          <div class="dropdown-columns">
+            <% if user_signed_in? && (current_user.editor? || current_user.group_member? || current_user.admin?) %>
+              <h6 class="dropdown-header">Tools</h6>
+              <ul>
+                <li>
+                  <%= link_to "Add species", new_taxon_path, class: 'dropdown-item' %>
+                </li>
+              </ul>
+            <% end %>
+            <% if user_signed_in? %>
+              <%= #link_to 'Edit profile', edit_user_registration_path, :class => 'btn nav-link', id: "devise-button"
+              %>
+              <% if current_user.admin? || current_user.group_member? %>
+                <%= link_to 'Submissions', submissions_path, class: 'dropdown-item' %>
+              <% end %>
+              <%= link_to 'Jobs', server_jobs_path, class: 'dropdown-item' %>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+              Log out <i class="fas fa-sign-out-alt"></i>
+              <% end %>
+            <% else %>
+              <%= link_to "Sign in", new_user_session_path, class: "dropdown-item" %>
+              <%= link_to 'Sign up', new_user_registration_path, :class => 'dropdown-item' %>
+            <% end %>
+          </div>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

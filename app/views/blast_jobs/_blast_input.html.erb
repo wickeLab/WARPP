@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header" id="headingOne">
+    <h5 class="mb-0">Your input data</h5>
+  </div>
+  <div class="card-body">
+
+  </div>
+
+  <div class="card-header" id="headingOne">
+    <h5 class="mb-0">Your settings</h5>
+  </div>
+  <div class="card-body">
+    <table class="wiki-table">
+      <tr>
+        <td><b>Evalue:</b></td>
+        <td><%= @blast_job.evalue || BlastJob::DEFAULT_EVALUE %></td>
+      </tr>
+      <tr>
+        <td><b>Word size:</b></td>
+        <td><%= @blast_job.word_size || BlastJob::DEFAULT_WORD_SIZE %></td>
+      </tr>
+      <tr>
+        <td><b>Max target seqs:</b></td>
+        <td><%= @blast_job.max_target_seqs || BlastJob::DEFAULT_MAX_TARGET_SEQS %></td>
+      </tr>
+      <tr>
+        <td><b>Species:</b></td>
+        <td><%= @blast_job.species || 'No species specified' %></td>
+      </tr>
+    </table>
+  </div>
+
+  <% unless @blast_job.finished_run? %>
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">Notification</h5>
+    </div>
+    <div class="card-body">
+      <% if @blast_job.email_notification %>
+        We will notify you via email as soon as your job has finished.
+      <% else %>
+        You chose not to be notified via email.
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<html>
+<head>
+</head>
+<body>
+<%= content_for :main_content do %>
+  <div class="edit-container">
+    <h2>WARPP BLAST</h2>
+    <h3>Job: <%= @blast_job.title.empty? ? 'no title' : @blast_job.title %></h3>
+    <h3>Status: <%= @blast_job.status %></h3>
+    <% if @blast_job.finished_run? %>
+      <%= button_to "Download results (zip)", download_blast_result_path, method: :get, class: "btn", id: "download-result-zip" %>
+    <% end %>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input" aria-selected="true">Input</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="input" role="tabpanel" aria-labelledby="input-tab">
+        <%= render 'blast_input' %>
+      </div>
+    </div>
+
+  </div>
+<% end %>
+</body>
+</html>
