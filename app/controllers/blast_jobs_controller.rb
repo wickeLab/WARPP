@@ -12,11 +12,6 @@ class BlastJobsController < ApplicationController
 
   def new
     @blast_job = BlastJob.new
-    @available_species = `ls #{Dir.home}/server_jobs/blast/custom_db`.split("\n").map do |filename|
-      if filename[/\.(fa|fasta)/]
-        filename[/[A-Z][a-z]+_?[A-Za-z]+/].gsub('_', ' ')
-      end
-    end.uniq.sort
   end
 
   def create

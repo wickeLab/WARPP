@@ -23,13 +23,21 @@ class OrthogroupsController < ApplicationController
 
   def download_newick
     orthogroup = Orthogroup.find(params[:id])
-    file_path = ActiveStorage::Blob.service.path_for(orthogroup.tree_file.key)
-    send_file(file_path, filename: "#{orthogroup.identifier}_tree.txt", disposition: 'attachment', type: "text/plain")
+    if user_signed_in?
+      file_path = ActiveStorage::Blob.service.path_for(orthogroup.tree_file.key)
+      send_file(file_path, filename: "#{orthogroup.identifier}_tree.txt", disposition: 'attachment', type: 'text/plain')
+    else
+      redirect_to orthogroup, error: 'You have to be signed in to download'
+    end
   end
 
   def download_fasta
     orthogroup = Orthogroup.find(params[:id])
-    file_path = ActiveStorage::Blob.service.path_for(orthogroup.sequence_file.key)
-    send_file(file_path, filename: "#{orthogroup.identifier}.fasta", disposition: 'attachment', type: "text/plain")
+    if user_signed_in?
+      file_path = ActiveStorage::Blob.service.path_for(orthogroup.sequence_file.key)
+      send_file(file_path, filename: "#{orthogroup.identifier}.fasta", disposition: 'attachment', type: 'text/plain')
+    else
+      redirect_to orthogroup, error: 'You have to be signed in to download'
+    end
   end
 end

@@ -42,9 +42,11 @@
           <div class="accordion" id="taxon-functions"></div>
 
           <div class="downloads">
-            <%= button_to "Download tree (newick)", download_ortho_newick_path, method: :get, class: "btn", id: "download-tree-file" %>
-            <% if @orthogroup.sequence_file.attached? %>
-              <%= button_to "Download sequences (fasta)", download_ortho_fasta_path, method: :get, class: "btn", id: "download-sequence-file" %>
+            <% if user_signed_in? %>
+              <%= button_to "Download tree (newick)", download_ortho_newick_path, method: :get, class: "btn", id: "download-tree-file" %>
+              <% if @orthogroup.sequence_file.attached? %>
+                <%= button_to "Download sequences (fasta)", download_ortho_fasta_path, method: :get, class: "btn", id: "download-sequence-file" %>
+              <% end %>
             <% end %>
           </div>
         </div>

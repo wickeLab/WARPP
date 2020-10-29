@@ -7,6 +7,27 @@ class BlastJob < ApplicationRecord
   DEFAULT_WORD_SIZE = 1
   DEFAULT_MAX_TARGET_SEQS = 1
   DEFAULT_EVALUE = '1e-10'
+  AVAILABLE_SPECIES = ['Aeginetia indica', 'Alectra orobanchoides', 'Aphyllon californicum', 'Aphyllon epigalium',
+                       'Aphyllon fasciculatum', 'Aphyllon purpureum', 'Aphyllon uniflorum', 'Aureolaria virginica',
+                       'Balanophora laxiflora', 'Balanophora reflexa', 'Boulardia latisquama', 'Buchnera americana',
+                       'Cassytha capillaris', 'Cassytha filiformis', 'Castilleja paramensis', 'Cistanche deserticola',
+                       'Cistanche phelypaea', 'Cistanthe longiscapa', 'Conopholis americana', 'Cuscuta australis',
+                       'Cuscuta campestris', 'Cuscuta exaltata', 'Cuscuta gronovii', 'Cuscuta obtusiflora',
+                       'Cuscuta pentagona', 'Cuscuta reflexa', 'Cynomorium coccineum', 'Cytinus hypocistis',
+                       'Dendrotrophe varians', 'Epifagus virginiana', 'Euphrasia minima', 'Euphrasia petiolaris',
+                       'Hydnora visseri', 'Kopsiopsis hookeri', 'Lathraea clandestina', 'Lathraea squamaria',
+                       'Lindenbergia philippensis', 'Macrosolen cochinchinensis', 'Melampyrum pratense',
+                       'Neobartsia inaequalis', 'Orobanche austrohispanica', 'Orobanche cernua', 'Orobanche crenata',
+                       'Orobanche cumana', 'Orobanche densiflora', 'Orobanche gracilis', 'Orobanche minor',
+                       'Orobanche pancicii', 'Orobanche rapumgenistae', 'Pedicularis cheilanthifolia',
+                       'Pedicularis hallaisanensis', 'Pedicularis ishidoyana', 'Phelipanche aegyptiaca',
+                       'Phelipanche lavandulacea', 'Phelipanche purpurea', 'Phelipanche ramosa', 'Pholisma arenarium',
+                       'PhtheirospermumJaponicum', 'Pilostyles aethiopica', 'Pilostyles hamiltonii',
+                       'Rehmannia glutinosa', 'Rhinanthus serotinus', 'Schoepfia jasminodora', 'Schwalbea americana',
+                       'Scurrula parasitica', 'Striga asiatica', 'Striga aspera', 'Striga forbesii',
+                       'Striga gesnerioides', 'Striga hermonthica', 'Taxillus chinensis', 'Taxillus sutchuenensis',
+                       'Tozzia alpina', 'Triphysaria versicolor', 'Viscum album', 'Viscum coloratum',
+                       'Viscum crassulae', 'Viscum minimum', 'Ximenia americana'].freeze
 
   # ATTRIBUTES
   has_one_attached :result_zip
@@ -35,6 +56,10 @@ class BlastJob < ApplicationRecord
   def start_job
     BlastJobManagerWorker.perform_async(id)
     update(status: 'running')
+  end
+
+  def report_failure
+    update(status: 'failed')
   end
 
   # CLASS METHODS

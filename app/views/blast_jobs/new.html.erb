@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">Upload your input data</h5>
-          <small>Please do not upload more than 20 target sequences total. We will ignore all additional sequences.</small>
+          <small>Please do not upload more than 10 MB of query sequences total. We will ignore all additional sequences.</small>
         </div>
         <div class="card-body">
 
@@ -39,7 +39,7 @@
 
           <%= f.input :max_target_seqs, as: :numeric, input_html: { min: '1', step: '1', placeholder: '1' } %>
 
-          <%= f.input :species, collection: @available_species, input_html: { class: 'selectpicker' } %>
+          <%= f.input :species, collection: BlastJob::AVAILABLE_SPECIES, input_html: { class: 'selectpicker' } %>
         </div>
 
         <div class="card-header" id="headingOne">

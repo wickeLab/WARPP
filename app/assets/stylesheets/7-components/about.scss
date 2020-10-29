@@ -5,7 +5,7 @@
 // WARPP
 
 p, li {
-  //max-width: 75ch;
+  // max-width: 85ch;
 }
 
 figure, img {
@@ -25,13 +25,15 @@ figure, img {
 }
 
 figure {
+  margin-left: 15px;
+
   img {
     margin-bottom: 10px;
   }
 
   border: #cfcfcf solid 1px;
   background: #ededed;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
 }
 
 .card-footer.about-footer {

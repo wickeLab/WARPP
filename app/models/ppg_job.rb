@@ -40,7 +40,7 @@ class PpgJob < ApplicationRecord
 
   # INSTANCE METHODS
   def start_job
-    PpgJobManager.perform_async(id)
+    PpgJobManagerWorker.perform_async(id)
     update(status: 'running')
   end
 

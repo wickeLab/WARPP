@@ -45,4 +45,16 @@
     visibility: hidden;
     pointer-events: none;
   }
+
+  .card#ortho-accordion {
+    border: none;
+
+    button {
+      color: $clr-dark-grey;
+    }
+
+    .card-header {
+      background-color: transparent;
+    }
+  }
 }

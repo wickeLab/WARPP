@@ -88,6 +88,7 @@ var hoverDiv = d3.select(".d3-container").append("div")
     .attr("class", "full-node-name")
     .style("opacity", 0);
 
+// code is based on d3noob's collapsible tree diagram in v4
 function update(source) {
     p.call(zoom.transform, transform);
 

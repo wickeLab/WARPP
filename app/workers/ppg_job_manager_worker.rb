@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PpgJobManager
+class PpgJobManagerWorker
   include Sidekiq::Worker
 
   PARAMETER_TO_FLAG = {

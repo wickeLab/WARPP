@@ -81,6 +81,7 @@ function showTooltip(listToProject) {
     })
 }
 
+// code is based on d3noob's collapsible tree diagram in v4
 function update(source) {
 
     // Assigns the x and y position for the nodes

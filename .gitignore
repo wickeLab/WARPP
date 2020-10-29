@@ -39,6 +39,7 @@
 /data/
 
 /db/structure.sql
+/db/schema.rb
 
 .rspec
 
