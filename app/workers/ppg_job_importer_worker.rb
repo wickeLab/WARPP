@@ -15,12 +15,12 @@ class PpgJobImporterWorker
     load_functionality_scores(job_id)
 
     @ppg_job.update(status: 'finished')
-    send_mail
+    send_mail(job_id)
     remove_remote_dir(results_path)
   end
 
   def import_results(job_id)
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       # Download result file
       session.scp.download!(@result_zip_path, @local_zip_path)
 
@@ -43,16 +43,16 @@ class PpgJobImporterWorker
     # `rm -r #{@local_results_dir}/#{job_id}` if loaded
   end
 
-  def send_mail
+  def send_mail(job_id)
     return unless @ppg_job.email_notification
 
     user = @ppg_job.user
-    ServerJobMailer.with(user: user, job_title: @ppg_job.title, type: 'ppg', job_id: @ppg_job.id).finished_job.deliver_now
+    ServerJobMailer.with(user: user, job_title: @ppg_job.title, type: 'ppg', job_id: job_id).finished_job.deliver_now
   end
 
   def remove_remote_dir(results_path)
     # Net::SFTP.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |sftp|
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       # Delete results from server
       session.exec!("rm -r #{results_path}")
     end

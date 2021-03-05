@@ -1,10 +1,7 @@
 <html>
-<head>
-  <%= javascript_include_tag 'genome_browser' %>
-</head>
 <body>
 <% content_for :main_content do %>
-  <div class="genome-switch">
+  <div class="genome-switch" id="genome-browser-index">
     <h2>Select genome</h2>
     <%= select_tag "select_genome", options_for_select(@genomes), class: "selectpicker", id: "genomes", "data-live-search": true %>
     <%= button_tag "Go", type: 'button', onclick: "getGenomeBrowser()", class: 'btn btn-default' %>

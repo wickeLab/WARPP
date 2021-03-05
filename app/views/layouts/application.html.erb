@@ -5,8 +5,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application.js' %>
+  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_pack_tag 'application', media: 'all' %>
   <%= favicon_link_tag asset_path('warpp_icons/color3_64.png') %>
   <%= Gon::Base.render_data %>
 </head>
@@ -20,7 +20,7 @@
   <%= render 'layouts/flash_messages' %>
 </main>
 <footer>
-  <div class="on-the-left">Wicke lab, 2020</div>
+  <div class="on-the-left">Wicke lab, 2020-2021</div>
   <div class="on-the-right">
     <%= link_to "Legal disclosure", legal_disclosure_path, :class => 'footer-link' %>
     |

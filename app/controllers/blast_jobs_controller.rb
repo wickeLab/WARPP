@@ -6,11 +6,14 @@ class BlastJobsController < ApplicationController
 
   def show
     @blast_job = BlastJob.find(params[:id])
+    authorize! :read, @blast_job.server_job
   end
 
   def background; end
 
   def new
+    plastid_only = BlastJob::AVAILABLE_SPECIES[:plastid_only].map { |plastid_only| "#{plastid_only} (only plastid genome data)" }
+    @available_species = BlastJob::AVAILABLE_SPECIES[:others] + plastid_only
     @blast_job = BlastJob.new
   end
 
@@ -20,21 +23,12 @@ class BlastJobsController < ApplicationController
 
     @blast_job = BlastJob.new(blast_job_params)
     @blast_job.user = current_user
-    @blast_job.save
-
-    blast_job_dir = "#{Dir.home}/server_jobs/blast/#{@blast_job.id}/queries"
-    `mkdir -p #{blast_job_dir} 2> /dev/null`
-
-    unless params['seqs'].strip.empty?
-      File.open("#{blast_job_dir}/#{@blast_job.id}.fa", 'w') do |f|
-        f.puts params['seqs'].gsub('\r', '')
-      end
-    end
-
-    query_fastas&.each do |query_fasta|
-      File.open("#{blast_job_dir}/#{query_fasta.original_filename}", 'w') do |f|
-        f.write(query_fasta.read)
-      end
+    @blast_job.save_queries(query_fastas, params['seqs'])
+    begin
+      @blast_job.save!
+    rescue ActiveRecord::RecordInvalid
+      redirect_to new_blast_job_path, error: @blast_job.errors.full_messages[0]
+      return
     end
 
     redirect_to @blast_job, success: 'Your job has been submitted.'
@@ -51,11 +45,11 @@ class BlastJobsController < ApplicationController
     result_zip = blast_job.result_zip
     file_path = ActiveStorage::Blob.service.path_for(result_zip.key)
     filename = if blast_job.title.empty?
-                 blast_job.id
+                 blast_job.id.to_s
                else
                  blast_job.title
                end
-    send_file(file_path, filename: "BLAST#{filename.gsub(' ', '_')}.zip", disposition: 'attachment', type: "application/zip")
+    send_file(file_path, filename: "BLAST#{filename.gsub(' ', '_')}.zip", disposition: 'attachment', type: 'application/zip')
   end
 
   private

@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   has_many :server_jobs, dependent: :destroy
   has_many :ppg_jobs, through: :server_jobs, source: :job, source_type: 'PpgJob'
+  has_many :blast_jobs, through: :server_jobs, source: :job, source_type: 'BlastJob'
 
   # VALIDATIONS
   validates_uniqueness_of :user_name

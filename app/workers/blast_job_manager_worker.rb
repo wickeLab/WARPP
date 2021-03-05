@@ -12,8 +12,7 @@ class BlastJobManagerWorker
   def perform(blast_job_id)
     @blast_job = BlastJob.find(blast_job_id)
     check_query_number(blast_job_id)
-    `#{Dir.home}/server_jobs/send_telegram.sh 'All done'`
-    # start_pipeline(build_command, blast_job_id)
+    start_pipeline(build_command, blast_job_id)
   end
 
   def check_query_number(job_id)
@@ -63,7 +62,7 @@ class BlastJobManagerWorker
       input = @blast_job[parameter]
       next if input.nil? || input.to_s&.empty? || !input
 
-      cmd += " #{flag} #{input.gsub(' ', '_')}"
+      cmd += " #{flag} #{input.to_s.gsub(' ', '_')}"
     end
 
     cmd
@@ -71,7 +70,7 @@ class BlastJobManagerWorker
 
   def start_pipeline(command, job_id)
     logger.info 'Running Blast'
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       blast_job_dir = "/data/data2/lara/warpp_server_jobs/blast/#{job_id}"
 
       # Create analysis directory

@@ -4,15 +4,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', '~> 6.0'
+# Use webpacker as JavaScript compiler
+gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -39,7 +39,7 @@ gem 'commonmarker'
 
 # User management
 gem 'cancancan'
-gem 'devise'
+gem 'devise', '~> 4.7.1'
 
 # JQuery libraries
 gem 'jquery-rails'
@@ -51,20 +51,10 @@ gem 'ajax-datatables-rails'
 
 # Sprockets (necessary for Bootstrap)
 gem 'sprockets-rails', require: 'sprockets/railtie'
-# gem 'react-rails'
 gem 'sidekiq'
 
 gem 'parallel'
 gem 'tre-ruby'
-
-# Bootstrap
-gem 'bootstrap', '~> 4.4.1'
-gem 'bootstrap-glyphicons'
-gem 'bootstrap-select-rails'
-gem 'bootstrap-view-helpers'
-
-# React
-gem 'react-rails'
 
 # Ancestry for nested TaxonomicLevel model
 gem 'ancestry'
@@ -93,25 +83,20 @@ gem 'ruby-progressbar'
 
 gem 'carrierwave', '~> 2.0'
 
-# d3
-gem 'd3-rails'
-
 # strip_tags for models
 gem 'sanitize'
 
 # timed jobs
 gem 'whenever', require: false
-
-# use Rails variables in js
+# gon
 gem 'gon'
-# use flash messages in js
-gem 'toastr-rails'
-
-# Javascript library to help render GBIF maps
-gem 'leaflet-rails'
 
 # gem for forms
 gem 'simple_form'
+
+# server communication prerequisites
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 
 # server communication
 gem 'net-scp'
@@ -126,7 +111,7 @@ group :development, :test do
   gem 'bullet' # Checks for n+1 queries
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 4.0.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.88.0', require: false
 end
 
 group :development do

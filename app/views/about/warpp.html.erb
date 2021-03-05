@@ -1,19 +1,16 @@
 <html>
-<head>
-  <%= javascript_include_tag 'warpp_manual' %>
-</head>
-<body>
-<% content_for :main_content do %>
-<div class="documentation-wrapper">
-  <div class="flex-navigation">
-    <div class="chapter-navigation"></div>
+  <body>
+  <% content_for :main_content do %>
+  <div class="documentation-wrapper" id="warpp-documentation">
+    <div class="flex-navigation">
+      <div class="chapter-navigation"></div>
+    </div>
+    <div class="documentation">
+      <h1>WARPP Manual</h1>
+      <h2>Web Application for the Research of Parasitic Plants</h2>
+      <%= raw CommonMarker.render_html(File.read(@manual), [:DEFAULT]) %>
+    </div>
   </div>
-  <div class="documentation">
-    <h1>WARPP Manual</h1>
-    <h2>Web Application for the Research of Parasitic Plants</h2>
-    <%= raw CommonMarker.render_html(File.read(@manual), [:DEFAULT]) %>
-  </div>
-</div>
-<% end %>
-</body>
+  <% end %>
+  </body>
 </html>

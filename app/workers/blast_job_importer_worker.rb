@@ -13,12 +13,12 @@ class BlastJobImporterWorker
     @blast_job.result_zip.attach(io: File.open(@local_zip_path), filename: "#{job_id}.zip")
 
     @blast_job.update(status: 'finished')
-    send_mail
+    send_mail(job_id)
     remove_remote_dir(results_path)
   end
 
   def import_results(job_id)
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       # Download result file
       session.scp.download!(@result_zip_path, @local_zip_path)
     rescue StandardError => e
@@ -27,7 +27,7 @@ class BlastJobImporterWorker
     end
   end
 
-  def send_mail
+  def send_mail(job_id)
     return unless @blast_job.email_notification
 
     user = @blast_job.user
@@ -36,7 +36,7 @@ class BlastJobImporterWorker
 
   def remove_remote_dir(results_path)
     # Net::SFTP.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |sftp|
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       # Delete results from server
       session.exec!("rm -r #{results_path}")
     end

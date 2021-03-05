@@ -34,7 +34,7 @@ class SubmissionsController < ApplicationController
 
   def reject
     Submission.find(params[:id]).reject_submission
-    redirect_to submission_index_path
+    redirect_to submissions_path
   end
 
   def index

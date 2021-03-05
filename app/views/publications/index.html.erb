@@ -1,47 +1,46 @@
-<head>
-  <%= javascript_include_tag 'publications' %>
-</head>
-<body>
-<% content_for :main_content do %>
-  <div class="publications-wrapper">
-    <div class="table-wrapper" id="height-reference">
-      <table class="table table-hover dataTable" id="publications-datatable" data-source="<%= datatable_publications_path(format: :json) %>">
-        <thead>
-        <tr>
-          <th>Year</th>
-          <th>Authors</th>
-          <th>Title</th>
-          <th data-orderable="false">Species</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
+<html>
+  <body>
+  <% content_for :main_content do %>
+    <div class="publications-wrapper" id="publication-index">
+      <div class="table-wrapper" id="height-reference">
+        <table class="table table-hover dataTable" id="publications-datatable" data-source="<%= datatable_publications_path(format: :json) %>">
+          <thead>
+          <tr>
+            <th>Year</th>
+            <th>Authors</th>
+            <th>Title</th>
+            <th data-orderable="false">Species</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
 
-    <div class="fix-feed"  id="feed-container">
-      <div class="rss-feed">
-        <div class="button-container">
-        </div>
-        <div class="publications-feed">
-          <div class="card">
-            <% if @rss_results.empty? %>
-              Our RSS feed is currently not available. Please try again later.
-            <% else %>
-              <% @rss_results.each do |article| %>
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0"><%= link_to article[:title], article[:link], target: "_blank" %></h5>
-                  <small><%= article[:date] %> <br> <%= article[:authors] %></small>
-                </div>
-                <div class="card-body">
-                  <%= article[:abstract] %>
-                </div>
+      <div class="fix-feed"  id="feed-container">
+        <div class="rss-feed">
+          <div class="button-container">
+          </div>
+          <div class="publications-feed">
+            <div class="card">
+              <% if @rss_results.empty? %>
+                Our RSS feed is currently not available. Please try again later.
+              <% else %>
+                <% @rss_results.each do |article| %>
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0"><%= link_to article[:title], article[:link], target: "_blank" %></h5>
+                    <small><%= article[:date] %> <br> <%= article[:authors] %></small>
+                  </div>
+                  <div class="card-body">
+                    <%= article[:abstract] %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
-</body>
+  <% end %>
+  </body>
+</html>

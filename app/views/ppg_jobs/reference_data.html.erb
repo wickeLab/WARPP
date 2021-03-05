@@ -1,43 +1,41 @@
-<head>
-  <%= javascript_include_tag 'server_jobs/ppg_reference_matches' %>
-</head>
-<body>
-<%= content_for :main_content do %>
-  <div class="edit-container">
-    <h2>Reference data</h2>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <% %w[stringent relaxed].each do |stringency| %>
-        <% selected = stringency == 'stringent' ? true : false %>
-        <li class="nav-item">
-          <a class="nav-link <%= 'active' if selected %>" id="<%= stringency %>-result-tab" data-toggle="tab" href="#<%= stringency %>-result" role="tab" aria-controls="result" aria-selected="<%= selected %>"><%= stringency.capitalize %> result</a>
-        </li>
-      <% end %>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <% %w[stringent relaxed].each do |stringency| %>
-        <% selected = stringency == 'stringent' ? 'show active' : '' %>
+<html>
+  <body>
+  <%= content_for :main_content do %>
+    <div class="edit-container" id="ppg-reference-matches">
+      <h2>Reference data</h2>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <% %w[stringent relaxed].each do |stringency| %>
+          <% selected = stringency == 'stringent' ? true : false %>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if selected %>" id="<%= stringency %>-result-tab" data-toggle="tab" href="#<%= stringency %>-result" role="tab" aria-controls="result" aria-selected="<%= selected %>"><%= stringency.capitalize %> result</a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <% %w[stringent relaxed].each do |stringency| %>
+          <% selected = stringency == 'stringent' ? 'show active' : '' %>
 
-        <div class="tab-pane fade <%= selected %>" id="<%= stringency %>-result" role="tabpanel" aria-labelledby="<%= stringency %>-result-tab">
+          <div class="tab-pane fade <%= selected %>" id="<%= stringency %>-result" role="tabpanel" aria-labelledby="<%= stringency %>-result-tab">
 
-          <table class="table table-hover dataTable" id="ppg-<%= stringency %>-reference-matches-datatable" data-source="<%= datatable_ppg_jobs_path(format: :json, mode: stringency) %>">
-            <thead>
-            <tr>
-              <th>Query</th>
-              <th>Functional assignment</th>
-              <th>Median functionality score</th>
-              <% @reference_targets.each do |target| %>
-                <th><%= target %></th>
-              <% end %>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+            <table class="table table-hover dataTable" id="ppg-<%= stringency %>-reference-matches-datatable" data-source="<%= datatable_ppg_jobs_path(format: :json, mode: stringency) %>">
+              <thead>
+              <tr>
+                <th>Query</th>
+                <th>Functional assignment</th>
+                <th>Median functionality score</th>
+                <% @reference_targets.each do |target| %>
+                  <th><%= target %></th>
+                <% end %>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
 
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
-</body>
-
+  <% end %>
+  </body>
+</html>

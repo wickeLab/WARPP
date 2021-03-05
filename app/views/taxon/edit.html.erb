@@ -1,97 +1,96 @@
-<head>
-  <%= javascript_include_tag 'taxon/taxon_edit' %>
-</head>
-<body>
-<% content_for(:main_content) do %>
-  <div class="edit-container">
-    <h2>Edit entry for <i><%= @scientific_name %></i></h2>
+<html>
+  <body>
+  <% content_for(:main_content) do %>
+    <div class="edit-container" id="taxon-edit">
+      <h2>Edit entry for <i><%= @scientific_name %></i></h2>
 
-    <div class="species-edit-form">
+      <div class="species-edit-form">
 
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">Scientific name</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex-container">
-            <div>Rename:</div>
-            <input type="text" class="input-field float-left" placeholder="<%= @scientific_name %>" id="update-species-name">
-          </div>
-        </div>
-
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">Species information</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex-container" id="change-lifespan">
-            <%= select_tag "lifespan", options_for_select(%w(annual biennial perennial)), class: "selectpicker", id: "lifespan" %>
-            <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="lifespan-reference-field">
-          </div>
-          <div class="three-columns editable-list" id="lifespan-references"></div>
-
-          <div class="flex-container" id="change-lifestyle">
-            <%= select_tag "lifestyle", options_for_select(%w(autotroph facultative obligate holoparasitic)), class: "selectpicker", id: "lifestyle" %>
-            <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="lifestyle-reference-field">
-          </div>
-          <div class="three-columns editable-list" id="lifestyle-references"></div>
-
-          <div class="flex-container" id="change-habit">
-            <div>Habit:</div>
-            <input type="text" class="input-field float-left" placeholder="e.g. herbaceous" id="habit">
-            <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="habit-reference-field">
-          </div>
-          <div class="three-columns editable-list" id="habit-references"></div>
-
-          <div class="flex-container" id="change-chromosome">
-            <div>Chromosome number (2n):</div>
-            <input type="text" class="input-field float-left" placeholder="only numbers allowed" id="chromosome">
-            <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="chromosome-reference-field">
-          </div>
-          <div class="three-columns editable-list" id="chromosome-references"></div>
-
-          <div class="flex-container" id="change-genome">
-            <div>Genome size (1C in Mbp):</div>
-            <input type="text" class="input-field float-left" placeholder="only numbers allowed" id="genome">
-            <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="genome-reference-field">
-          </div>
-          <div class="three-columns editable-list" id="genome-references"></div>
-        </div>
-
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">Parasitism</h5>
-        </div>
-        <div class="card-body">
-          <div class="flex-container" id="add-relation">
-            <%= select_tag "relation", options_for_select(["As host", "As parasite"]), class: "selectpicker", id: "relation-type" %>
-            <input type="text" class="input-field species-field" placeholder="Scientific name" id="species">
-            <input type="text" class="input-field" placeholder="Reference doi(s)" id="reference-field">
-          </div>
-
-          <h5>Hosts</h5>
-          <div class="three-columns editable-list" id="hosts"></div>
-
-          <h5>Parasites</h5>
-          <div class="three-columns editable-list" id="parasites"></div>
-        </div>
-
-        <% if current_user.role == "admin" %>
+        <div class="card">
           <div class="card-header" id="headingOne">
-            <h5 class="mb-0">Upload image</h5>
+            <h5 class="mb-0">Scientific name</h5>
           </div>
           <div class="card-body">
-            <div class="flex-container custom-file">
-              <input type="file" class="custom-file-input" id="taxonomic_level_jpeg" name="taxonomic_level[jpeg]" tabindex="-98">
-              <label class="custom-file-label" for="customFile">Choose file</label>
+            <div class="flex-container">
+              <div>Rename:</div>
+              <input type="text" class="input-field float-left" placeholder="<%= @scientific_name %>" id="update-species-name">
             </div>
-            <input type="text" class="input-field float-left" placeholder="Author(s)" id="image-authors">
-            <input type="text" class="input-field float-left" placeholder="Location" id="image-location">
-            <input type="text" class="input-field float-left" placeholder="When was the photo taken?" id="image-date">
           </div>
-        <% end %>
-      </div>
 
-      <div class="button-container"></div>
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">Species information</h5>
+          </div>
+          <div class="card-body">
+            <div class="flex-container" id="change-lifespan">
+              <%= select_tag "lifespan", options_for_select(%w(annual biennial perennial)), class: "selectpicker", id: "lifespan" %>
+              <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="lifespan-reference-field">
+            </div>
+            <div class="three-columns editable-list" id="lifespan-references"></div>
+
+            <div class="flex-container" id="change-lifestyle">
+              <%= select_tag "lifestyle", options_for_select(%w(autotroph facultative obligate holoparasitic)), class: "selectpicker", id: "lifestyle" %>
+              <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="lifestyle-reference-field">
+            </div>
+            <div class="three-columns editable-list" id="lifestyle-references"></div>
+
+            <div class="flex-container" id="change-habit">
+              <div>Habit:</div>
+              <input type="text" class="input-field float-left" placeholder="e.g. herbaceous" id="habit">
+              <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="habit-reference-field">
+            </div>
+            <div class="three-columns editable-list" id="habit-references"></div>
+
+            <div class="flex-container" id="change-chromosome">
+              <div>Chromosome number (2n):</div>
+              <input type="text" class="input-field float-left" placeholder="only numbers allowed" id="chromosome">
+              <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="chromosome-reference-field">
+            </div>
+            <div class="three-columns editable-list" id="chromosome-references"></div>
+
+            <div class="flex-container" id="change-genome">
+              <div>Genome size (1C in Mbp):</div>
+              <input type="text" class="input-field float-left" placeholder="only numbers allowed" id="genome">
+              <input type="text" class="input-field reference-field" placeholder="Reference doi(s)" id="genome-reference-field">
+            </div>
+            <div class="three-columns editable-list" id="genome-references"></div>
+          </div>
+
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">Parasitism</h5>
+          </div>
+          <div class="card-body">
+            <div class="flex-container" id="add-relation">
+              <%= select_tag "relation", options_for_select(["As host", "As parasite"]), class: "selectpicker", id: "relation-type" %>
+              <input type="text" class="input-field species-field" placeholder="Scientific name" id="species">
+              <input type="text" class="input-field" placeholder="Reference doi(s)" id="reference-field">
+            </div>
+
+            <h5>Hosts</h5>
+            <div class="three-columns editable-list" id="hosts"></div>
+
+            <h5>Parasites</h5>
+            <div class="three-columns editable-list" id="parasites"></div>
+          </div>
+
+          <% if current_user.role == "admin" %>
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">Upload image</h5>
+            </div>
+            <div class="card-body">
+              <div class="flex-container custom-file">
+                <input type="file" class="custom-file-input" id="taxonomic_level_jpeg" name="taxonomic_level[jpeg]" tabindex="-98">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+              <input type="text" class="input-field float-left" placeholder="Author(s)" id="image-authors">
+              <input type="text" class="input-field float-left" placeholder="Location" id="image-location">
+              <input type="text" class="input-field float-left" placeholder="When was the photo taken?" id="image-date">
+            </div>
+          <% end %>
+        </div>
+
+        <div class="button-container"></div>
+      </div>
     </div>
-  </div>
-<% end %>
-</body>
+  <% end %>
+  </body>
+</html>

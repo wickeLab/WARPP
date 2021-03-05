@@ -1,18 +1,16 @@
-<head>
+<html>
+  <body>
+  <%= content_for :main_content do %>
+    <div class="sub-main">
+      <%= link_to 'Back', new_blast_job_path %>
 
-</head>
-<body>
-<%= content_for :main_content do %>
-  <div class="sub-main">
-    <%= link_to 'Back', new_blast_job_path %>
-
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5>The WARPP BLAST-database</h5>
-      </div>
-      <div class="card-body">
-        <p class="tool-description">
-          Our custom WARPP-database contains data on the following species:
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5>The WARPP BLAST-database</h5>
+        </div>
+        <div class="card-body">
+          <p class="tool-description">
+            Our custom WARPP-database contains data on the following species:
 
           <ul>
             <li>Aeginetia indica</li>
@@ -95,10 +93,11 @@
             <li>Viscum minimum</li>
             <li>Ximenia americana</li>
           </ul>
-        </p>
+          </p>
+        </div>
       </div>
-    </div>
 
-  </div>
-<% end %>
-</body>
+    </div>
+  <% end %>
+  </body>
+</html>

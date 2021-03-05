@@ -1,27 +1,24 @@
 <html>
-<head>
-  <%= javascript_include_tag 'server_jobs/server_jobs' %>
-</head>
-<body>
-<% content_for :main_content do %>
-  <div class="sub-main" id="new-jobs-links">
-    <a href='<%= new_ppg_job_path %>'><i class="fas fa-plus-square"></i> New PPG Scorer job</a>
-  </div>
+  <body>
+  <% content_for :main_content do %>
+    <div class="sub-main" id="new-jobs-links">
+      <a href='<%= new_ppg_job_path %>'><i class="fas fa-plus-square"></i> New PPG Scorer job</a>
+    </div>
 
-  <div class="sub-main">
-    <table class="table table-hover dataTable" id="server-jobs-datatable" data-source="<%= datatable_server_jobs_path(format: :json) %>">
-      <thead>
-      <tr>
-        <th>Job type</th>
-        <th>Job title</th>
-        <th>Submitted</th>
-        <th>Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-</body>
+    <div class="sub-main" id="server-job-index">
+      <table class="table table-hover dataTable" id="server-jobs-datatable" data-source="<%= datatable_server_jobs_path(format: :json) %>">
+        <thead>
+        <tr>
+          <th>Job type</th>
+          <th>Job title</th>
+          <th>Submitted</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  </body>
 </html>

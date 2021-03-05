@@ -1,5 +1,39 @@
 {
-  "name": "warp2",
+  "name": "warpp",
   "private": true,
-  "dependencies": {}
+  "engines": {
+    "node": "14.15.3",
+    "yarn": "1.22.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@rails/activestorage": "^6.1.1",
+    "@rails/ujs": "^6.1.1",
+    "@rails/webpacker": "5.2.1",
+    "bootstrap": "4.5.3",
+    "bootstrap-select": "^1.13.18",
+    "channels": "0.0.4",
+    "coffee-loader": "^1.0.1",
+    "coffeescript": "^2.5.1",
+    "core-js": "^3.8.3",
+    "d3": "^4.13.0",
+    "datatables.net": "^1.10.23",
+    "datatables.net-bs4": "^1.10.23",
+    "gon": "^1.0.3",
+    "jquery": "^3.5.1",
+    "jquery-ujs": "^1.2.2",
+    "leaflet": "^1.7.1",
+    "popper.js": "1.16.1",
+    "regenerator-runtime": "^0.13.7",
+    "scrollbooster": "^3.0.2",
+    "slick-carousel": "^1.8.1",
+    "toastr": "^2.1.4",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3"
+  }
 }

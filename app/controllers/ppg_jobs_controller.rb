@@ -20,10 +20,7 @@ class PpgJobsController < ApplicationController
 
   def show
     @ppg_job = PpgJob.find(params[:id])
-
-    unless user_signed_in? && (current_user == @ppg_job.user || current_user.admin?)
-      redirect_to home_index_path
-    end
+    authorize! :read, @ppg_job.server_job
 
     @user_targets = @ppg_job.ppg_matches.pluck(:target).uniq.sort.map { |target| target.gsub('.', '_') }
     gon.user_targets = @user_targets
@@ -86,7 +83,7 @@ class PpgJobsController < ApplicationController
     result_zip = ppg_job.result_zip
     file_path = ActiveStorage::Blob.service.path_for(result_zip.key)
     filename = if ppg_job.title.empty?
-                 ppg_job.id
+                 ppg_job.id.to_s
                else
                  ppg_job.title
                end

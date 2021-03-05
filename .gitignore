@@ -34,8 +34,9 @@
 /config/deploy
 
 /lib/seeds/
-/app/assets/images/
-/app/assets/fonts/
+/app/assets/images
+/app/webpacker/images
+/app/webpacker/fonts
 /data/
 
 /db/structure.sql
@@ -44,3 +45,13 @@
 .rspec
 
 config/environments/development.rb
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.rakeTasks
+.generators

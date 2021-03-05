@@ -1,23 +1,21 @@
-<head>
-  <script src="https://unpkg.com/scrollbooster@2/dist/scrollbooster.min.js"></script>
-  <%= javascript_include_tag 'orthogroups' %>
-</head>
-<body>
-<% content_for :main_content do %>
-  <div class="orthogroup-table-wrapper">
-    <table class="table table-hover dataTable" id="orthogroups-datatable" data-source="<%= datatable_orthogroups_path(format: :json) %>">
-      <thead>
-      <tr>
-        <th>Orthogroup</th>
-        <th data-orderable="false">Functional assignment</th>
-        <% @all_taxa.each do |taxon| %>
-          <th data-orderable="false"><%= taxon %></th>
-        <% end %>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-</body>
+<html>
+  <body>
+  <% content_for :main_content do %>
+    <div class="orthogroup-table-wrapper" id="orthogroup-index">
+      <table class="table table-hover dataTable" id="orthogroups-datatable" data-source="<%= datatable_orthogroups_path(format: :json) %>">
+        <thead>
+        <tr>
+          <th>Orthogroup</th>
+          <th data-orderable="false">Functional assignment</th>
+          <% @all_taxa.each do |taxon| %>
+            <th data-orderable="false"><%= taxon %></th>
+          <% end %>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  </body>
+</html>

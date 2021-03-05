@@ -1,0 +1,26 @@
+// Place all the styles related to the ServerJobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#server-job-select {
+  margin-left: 5px;
+}
+
+#new-jobs-links {
+  margin-bottom: 10px;
+}
+
+.server-note {
+  border: red 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  width: 80ch;
+}
+
+.blast_job_species {
+  small {
+    font-size: 16px;
+    color: $clr-dark-grey !important;
+  }
+}

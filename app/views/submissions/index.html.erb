@@ -1,25 +1,22 @@
 <html>
-<head>
-  <%= javascript_include_tag 'submission_index' %>
-</head>
-<body>
-<% content_for :main_content do %>
-  <div class="sub-main">
-    <table class="table table-hover dataTable" id="submissions-datatable" data-source="<%= datatable_submissions_path(format: :json) %>">
-      <thead>
-      <tr>
-        <th>Submission</th>
-        <th>Request</th>
-        <th>Species</th>
-        <th>User</th>
-        <th>Submitted</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-</body>
+  <body>
+  <% content_for :main_content do %>
+    <div class="sub-main" id="submission-index">
+      <table class="table table-hover dataTable" id="submissions-datatable" data-source="<%= datatable_submissions_path(format: :json) %>">
+        <thead>
+        <tr>
+          <th>Submission</th>
+          <th>Request</th>
+          <th>Species</th>
+          <th>User</th>
+          <th>Submitted</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  </body>
 </html>

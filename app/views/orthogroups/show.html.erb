@@ -1,12 +1,8 @@
 <!doctype html>
 <html>
-  <head>
-    <%= javascript_include_tag 'orthogroup_tree' %>
-    <%= javascript_include_tag 'orthogroup' %>
-  </head>
   <body>
   <% content_for :main_content do %>
-    <div class="orthogroup-main">
+    <div class="orthogroup-main" id="orthogroup-show">
       <div class="fix-position-wrapper">
         <div class="d3-container"></div>
       </div>

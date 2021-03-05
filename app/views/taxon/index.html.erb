@@ -1,10 +1,9 @@
 <html>
   <head>
-    <%= javascript_include_tag 'taxon/taxon_index' %>
   </head>
   <body>
   <% content_for :main_content do %>
-    <div class="taxonomy-tree-page-container">
+    <div class="taxonomy-tree-page-container" id="taxonomy-browser-page">
       <div class="fix-position-wrapper" id="tree-container">
         <div class="d3-container">
           <button id='reset-tree' class="btn" title="Reset zoom & recenter"><i class="fas fa-compress-arrows-alt"></i></button>

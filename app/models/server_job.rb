@@ -6,7 +6,7 @@ class ServerJob < ApplicationRecord
   belongs_to :job, polymorphic: true
 
   # CALLBACKS
-  before_destroy :destroy_dependent
+  # before_destroy :destroy_dependent
 
   # PRIVATE METHODS
   private

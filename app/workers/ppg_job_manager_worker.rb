@@ -68,7 +68,7 @@ class PpgJobManagerWorker
 
   def start_pipeline(command, job_id)
     logger.info 'Running PPG scorer'
-    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/deploy/.ssh/xylocalyx']) do |session|
+    Net::SSH.start(Rails.application.credentials[:xylocalyx_ip], 'lara', keys: ['/home/warpp/.ssh/xylocalyx']) do |session|
       ppg_job_dir = "/data/data2/lara/warpp_server_jobs/ppg_scorer/#{job_id}"
 
       # Create analysis directory

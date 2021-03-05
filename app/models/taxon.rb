@@ -285,7 +285,7 @@ class Taxon < ApplicationRecord
               plant_image.save
 
               file = open(photo_url)
-              plant_image.image.attach(io: file, filename: "#{scientific_name.gsub(" ", "_")}_#{current_photo_count}.jpg", content_type: 'image/jpg')
+              plant_image.image.attach(io: file, filename: "#{scientific_name.gsub(' ', '_')}_#{current_photo_count}.jpg", content_type: 'image/jpg')
             end
           end
         end

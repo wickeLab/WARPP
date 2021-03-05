@@ -35,7 +35,7 @@ class PpgJob < ApplicationRecord
   # SCOPES
 
   # CALLBACKS
-  after_commit :manage_job
+  # after_commit :manage_job
   before_destroy :destroy_job
 
   # INSTANCE METHODS

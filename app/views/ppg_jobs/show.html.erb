@@ -1,58 +1,55 @@
 <html>
-<head>
-  <%= javascript_include_tag 'server_jobs/ppg_matches' %>
-</head>
-<body>
-<%= content_for :main_content do %>
-  <div class="edit-container">
-    <h2>Plastid Pseudogene Scorer</h2>
-    <h3>Job: <%= @ppg_job.title.empty? ? 'no title' : @ppg_job.title %></h3>
-    <h3>Status: <%= @ppg_job.status %></h3>
-    <%= link_to 'See reference scores', ppg_jobs_references_path %>
-    <% if @ppg_job.finished_run? %>
-      <%= button_to "Download results (zip)", download_ppg_result_path, method: :get, class: "btn", id: "download-result-zip" %>
-    <% end %>
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input" aria-selected="true">Input</a>
-      </li>
+  <body>
+  <%= content_for :main_content do %>
+    <div class="edit-container" id="ppg-show">
+      <h2>Plastid Pseudogene Scorer</h2>
+      <h3>Job: <%= @ppg_job.title.empty? ? 'no title' : @ppg_job.title %></h3>
+      <h3>Status: <%= @ppg_job.status %></h3>
+      <%= link_to 'See reference scores', ppg_jobs_references_path %>
       <% if @ppg_job.finished_run? %>
-        <% @ppg_job.stringency.each do |stringency| %>
-          <li class="nav-item">
-            <a class="nav-link" id="<%= stringency %>-result-tab" data-toggle="tab" href="#<%= stringency %>-result" role="tab" aria-controls="result" aria-selected="false"><%= stringency.capitalize %> result</a>
-          </li>
+        <%= button_to "Download results (zip)", download_ppg_result_path, method: :get, class: "btn", id: "download-result-zip" %>
+      <% end %>
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input" aria-selected="true">Input</a>
+        </li>
+        <% if @ppg_job.finished_run? %>
+          <% @ppg_job.stringency.each do |stringency| %>
+            <li class="nav-item">
+              <a class="nav-link" id="<%= stringency %>-result-tab" data-toggle="tab" href="#<%= stringency %>-result" role="tab" aria-controls="result" aria-selected="false"><%= stringency.capitalize %> result</a>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="input" role="tabpanel" aria-labelledby="input-tab">
-        <%= render 'ppg_input' %>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="input" role="tabpanel" aria-labelledby="input-tab">
+          <%= render 'ppg_input' %>
+        </div>
+        <% if @ppg_job.finished_run? %>
+          <% @ppg_job.stringency.each do |stringency| %>
+            <div class="tab-pane fade" id="<%= stringency %>-result" role="tabpanel" aria-labelledby="<%= stringency %>-result-tab">
+
+              <table class="table table-hover dataTable" id="ppg-<%= stringency %>-matches-datatable" data-source="<%= datatable_ppg_jobs_path(format: :json, ppg_job: @ppg_job, mode: stringency.to_s) %>">
+                <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>Functional assignment</th>
+                  <th>Median functionality score</th>
+                  <% @user_targets.each do |target| %>
+                    <th><%= target %></th>
+                  <% end %>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+
+            </div>
+          <%end %>
+        <% end %>
       </div>
-      <% if @ppg_job.finished_run? %>
-        <% @ppg_job.stringency.each do |stringency| %>
-          <div class="tab-pane fade" id="<%= stringency %>-result" role="tabpanel" aria-labelledby="<%= stringency %>-result-tab">
-
-            <table class="table table-hover dataTable" id="ppg-<%= stringency %>-matches-datatable" data-source="<%= datatable_ppg_jobs_path(format: :json, ppg_job: @ppg_job, mode: stringency.to_s) %>">
-              <thead>
-              <tr>
-                <th>Query</th>
-                <th>Functional assignment</th>
-                <th>Median functionality score</th>
-                <% @user_targets.each do |target| %>
-                  <th><%= target %></th>
-                <% end %>
-              </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-
-          </div>
-        <%end %>
-      <% end %>
     </div>
-  </div>
-<% end %>
-</body>
+  <% end %>
+  </body>
 </html>

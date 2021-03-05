@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   get 'legal_disclosure', to: 'impressum#legal_disclosure', as: 'legal_disclosure'
   get 'privacy_policy', to: 'impressum#privacy_policy', as: 'privacy_policy'
 
-  root 'home#index', as: 'root'
+  root to: 'home#index', as: 'root'
 
   devise_scope :user do
     # authenticated :user do

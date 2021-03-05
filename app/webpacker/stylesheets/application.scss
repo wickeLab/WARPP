@@ -1,0 +1,55 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-select/sass/bootstrap-select";
+
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.min";
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+@import '~slick-carousel/slick/slick';
+
+@import "~toastr/toastr";
+
+@import "settings/globals";
+
+@import "design_tokens/colors";
+@import "design_tokens/fonts";
+@import "design_tokens/typography";
+
+@import "tools/aspect-ratio";
+@import "tools/blend-modes";
+
+@import "generic/box-sizing";
+@import "generic/normalize";
+
+@import "elements/buttons";
+@import "elements/flash-messages";
+@import "elements/forms";
+@import "elements/links";
+@import "elements/tables";
+
+@import "skeleton/grid";
+@import "skeleton/layouts";
+@import "skeleton/objects";
+
+@import "components/about";
+@import "components/genome_browser";
+@import "components/navbar";
+@import "components/orthogroup_index";
+@import "components/orthogroup_show";
+@import "components/ppg_jobs";
+@import "components/ppg_queries";
+@import "components/publication";
+@import "components/server_jobs";
+@import "components/submission";
+@import "components/taxon_edit";
+@import "components/taxon_index";
+@import "components/taxon_new";
+@import "components/taxon_show";
+@import "components/taxonomy_browser_index";
+@import "components/trait_reconstruction_tree";
+@import "components/warpp_doc";
+
+@import "utilities/modifiers";
+@import "utilities/states";
